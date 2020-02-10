@@ -3,6 +3,8 @@ Splunk Global Monitoring Console (GMC)
 The App must run on the Splunk Monitoring Console
 
 
+
+
 Required Splunkbase Apps:
 
 Splunk Common Information Model (CIM): https://splunkbase.splunk.com/app/1621
