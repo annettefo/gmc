@@ -1,12 +1,11 @@
 # gmc
 Splunk Global Monitoring Console
 
+The App must run on the Splunk Monitoring Console
+
 Required Splunkbase Apps:
-
-Custom Cluster Map Visualization: https://splunkbase.splunk.com/app/3124
-
+Splunk Common Information Model (CIM): https://splunkbase.splunk.com/app/1621
+Custom Cluster Map Visualization: https://splunkbase.splunk.com/app/3122
 Semicircle Donut Chart Visualization: https://splunkbase.splunk.com/app/4378
-
 Number Display Visualization: https://splunkbase.splunk.com/app/4537
-
-Geolocation Lookup for Splunk: https://splunkbase.splunk.com/app/4537
+Geolocation Lookup for Splunk: https://splunkbase.splunk.com/app/4102
