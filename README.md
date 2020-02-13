@@ -4,10 +4,6 @@ The App must run on the Splunk Monitoring Console
 
 
 
-
-The App must run on the Splunk Monitoring Console
-
-
 The Splunk Monitoring Console App (splunk_monitoring_console) must be exported globally on the Splunk Monitoring Console
 
 
