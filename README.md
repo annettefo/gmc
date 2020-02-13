@@ -12,8 +12,19 @@ The Splunk Monitoring Console App (splunk_monitoring_console) must be exported g
 
 
 Required Splunkbase Apps:
+
+
 Splunk Common Information Model (CIM): https://splunkbase.splunk.com/app/1621
+
+
 Custom Cluster Map Visualization: https://splunkbase.splunk.com/app/3122
+
+
 Semicircle Donut Chart Visualization: https://splunkbase.splunk.com/app/4378
+
+
 Number Display Visualization: https://splunkbase.splunk.com/app/4537
+
+
 Geolocation Lookup for Splunk: https://splunkbase.splunk.com/app/4102
+
