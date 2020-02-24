@@ -1,0 +1,250 @@
+<form theme="dark">
+  <label>Splunk - IDX - 05 - Inputs - Dashboard - v1</label>
+  <search id="splunk_sh_09_macros_dashboard_v1">
+    <query>
+| inputlookup splunk_sh_rest_data_inputs_all_csv_lookup 
+| fields Splunk_Instance Splunk_Roles app title disabled sharing author type description source sourcetype index location acceleration whitelist blacklist crcSalt interval
+| makemv delim="|" Splunk_Roles
+| fillnull value="Undefined" Splunk_Instance Splunk_Roles app title disabled sharing author type description source sourcetype index location acceleration whitelist blacklist crcSalt interval
+| search Splunk_Instance="*$Splunk_Instance$*" Splunk_Roles="*$Splunk_Roles$*" app="$app$" title="*$title$*" author="$author$" description="*$description$*" source="$source$" sourcetype="$sourcetype$" index="$index$" disabled="$disabled$" type="$type$"
+      </query>
+  </search>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="dropdown" token="Splunk_Roles" searchWhenChanged="true">
+      <label>Splunk Roles</label>
+      <fieldForLabel>Splunk_Roles</fieldForLabel>
+      <fieldForValue>Splunk_Roles</fieldForValue>
+      <search base="splunk_sh_09_macros_dashboard_v1">
+        <query>| stats count by Splunk_Roles</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="Splunk_Instance" searchWhenChanged="true">
+      <label>Splunk Instance</label>
+      <fieldForLabel>Splunk_Instance</fieldForLabel>
+      <fieldForValue>Splunk_Instance</fieldForValue>
+      <search base="splunk_sh_09_macros_dashboard_v1">
+        <query>| stats count by Splunk_Instance</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="app" searchWhenChanged="true">
+      <label>App</label>
+      <fieldForLabel>app</fieldForLabel>
+      <fieldForValue>app</fieldForValue>
+      <search base="splunk_sh_09_macros_dashboard_v1">
+        <query>| stats count by app</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="type" searchWhenChanged="true">
+      <label>Input Type</label>
+      <fieldForLabel>type</fieldForLabel>
+      <fieldForValue>type</fieldForValue>
+      <search base="splunk_sh_09_macros_dashboard_v1">
+        <query>| stats count by type</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+    </input>
+    <input type="dropdown" token="title" searchWhenChanged="true">
+      <label>Inputs Name</label>
+      <fieldForLabel>title</fieldForLabel>
+      <fieldForValue>title</fieldForValue>
+      <search base="splunk_sh_09_macros_dashboard_v1">
+        <query>| stats count by title</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="description" searchWhenChanged="true">
+      <label>Description</label>
+      <fieldForLabel>description</fieldForLabel>
+      <fieldForValue>description</fieldForValue>
+      <search base="splunk_sh_09_macros_dashboard_v1">
+        <query>| stats count by description</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="author" searchWhenChanged="true">
+      <label>Owner</label>
+      <fieldForLabel>author</fieldForLabel>
+      <fieldForValue>author</fieldForValue>
+      <search base="splunk_sh_09_macros_dashboard_v1">
+        <query>| stats count by author</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="index" searchWhenChanged="true">
+      <label>Index</label>
+      <fieldForLabel>index</fieldForLabel>
+      <fieldForValue>index</fieldForValue>
+      <search base="splunk_sh_09_macros_dashboard_v1">
+        <query>| stats count by index</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="source" searchWhenChanged="true">
+      <label>Source</label>
+      <fieldForLabel>source</fieldForLabel>
+      <fieldForValue>source</fieldForValue>
+      <search base="splunk_sh_09_macros_dashboard_v1">
+        <query>| stats count by source</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="sourcetype" searchWhenChanged="true">
+      <label>Source Type</label>
+      <fieldForLabel>sourcetype</fieldForLabel>
+      <fieldForValue>sourcetype</fieldForValue>
+      <search base="splunk_sh_09_macros_dashboard_v1">
+        <query>| stats count by sourcetype</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+    </input>
+    <input type="dropdown" token="disabled" searchWhenChanged="true">
+      <label>Disabled</label>
+      <fieldForLabel>disabled</fieldForLabel>
+      <fieldForValue>disabled</fieldForValue>
+      <choice value="*">All</choice>
+      <choice value="1">True</choice>
+      <choice value="0">False</choice>
+      <default>*</default>
+    </input>
+    <input type="text" token="Splunk_Roles" searchWhenChanged="true">
+      <label>Splunk Roles (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="Splunk_Instance" searchWhenChanged="true">
+      <label>Splunk Instance (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="title" searchWhenChanged="true">
+      <label>Inputs Name (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="description" searchWhenChanged="true">
+      <label>Description (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Total Number of Inputs</title>
+      <single>
+        <search base="splunk_sh_09_macros_dashboard_v1">
+          <query>| stats count</query>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x006d9c","0x006d9c"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <title>By App</title>
+      <chart>
+        <search base="splunk_sh_09_macros_dashboard_v1">
+          <query>| stats count by app</query>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Inputs</title>
+      <table>
+        <search base="splunk_sh_09_macros_dashboard_v1">
+          <query>| table Splunk_Instance author app sharing type title description source sourcetype index location disabled acceleration whitelist blacklist crcSalt interval 
+| sort 0 Splunk_Instance app title 
+| rename Splunk_Roles AS "Splunk Roles" app AS App title AS "Inputs Name" sharing AS "App Sharing" author AS Owner description AS Description type AS "Inputs Type" location AS Location index AS Index source AS Source sourcetype AS "Source Type" disabled AS Disabled</query>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">true</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">false</option>
+        <format type="color" field="Splunk_Instance">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Splunk Roles">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="App">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Inputs Name">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Owner">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="App Sharing">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Description">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Inputs Type">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Source">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Source Type">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Index">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Location">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Disabled">
+          <colorPalette type="map">{"0":#53A051,"1":#DC4E41}</colorPalette>
+        </format>
+      </table>
+    </panel>
+  </row>
+</form>

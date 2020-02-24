@@ -1,0 +1,571 @@
+"Splunk_Instance","Splunk_Roles",app,title,disabled,sharing,author,type,description,source,sourcetype,index,location,acceleration,whitelist,blacklist,crcSalt,interval
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_SA_CIM","$SPLUNK_HOME/var/spool/splunk/...stash_common_action_model",0,app,system,monitor,,,"stash_common_action_model",main,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_SA_CIM","$SPLUNK_HOME\var\spool\splunk\...stash_common_action_model",0,app,system,monitor,,,"stash_common_action_model",main,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/Library/Logs",1,app,system,monitor,,,,main,"/data/inputs/monitor",,,,,
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/etc",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.conf|\.cfg|config$|\.ini|\.init|\.cf|\.cnf|shrc$|^ifcfg|\.profile|\.rc|\.rules|\.tab|tab$|\.login|policy$)",,,
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/home/*/.bash_history",1,app,system,monitor,,,"bash_history",main,"/data/inputs/monitor",,,,,
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/bandwidth.sh",1,app,system,script,,bandwidth,bandwidth,main,"/data/inputs/script",,,,,60
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/cpu.sh",1,app,system,script,,cpu,cpu,main,"/data/inputs/script",,,,,30
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/df.sh",1,app,system,script,,df,df,main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/hardware.sh",1,app,system,script,,hardware,hardware,main,"/data/inputs/script",,,,,36000
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/interfaces.sh",1,app,system,script,,interfaces,interfaces,main,"/data/inputs/script",,,,,60
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/iostat.sh",0,app,system,script,,iostat,iostat,main,"/data/inputs/script",,,,,60
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/lastlog.sh",1,app,system,script,,lastlog,lastlog,main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/lsof.sh",1,app,system,script,,lsof,lsof,main,"/data/inputs/script",,,,,600
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/netstat.sh",0,app,system,script,,netstat,netstat,main,"/data/inputs/script",,,,,60
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/nfsiostat.sh",1,app,system,script,,nfsiostat,nfsiostat,main,"/data/inputs/script",,,,,60
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/openPorts.sh",1,app,system,script,,openPorts,openPorts,main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/openPortsEnhanced.sh",1,app,system,script,,"Unix:ListeningPorts","Unix:ListeningPorts",main,"/data/inputs/script",,,,,3600
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/package.sh",1,app,system,script,,package,package,main,"/data/inputs/script",,,,,3600
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/passwd.sh",1,app,system,script,,"Unix:UserAccounts","Unix:UserAccounts",main,"/data/inputs/script",,,,,3600
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/protocol.sh",0,app,system,script,,protocol,protocol,main,"/data/inputs/script",,,,,60
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/ps.sh",1,app,system,script,,ps,ps,main,"/data/inputs/script",,,,,30
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/rlog.sh",1,app,system,script,,auditd,auditd,main,"/data/inputs/script",,,,,60
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/selinuxChecker.sh",1,app,system,script,,"Linux:SELinuxConfig","Linux:SELinuxConfig",main,"/data/inputs/script",,,,,3600
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/service.sh",1,app,system,script,,"Unix:Service","Unix:Service",main,"/data/inputs/script",,,,,3600
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/sshdChecker.sh",1,app,system,script,,"Unix:SSHDConfig","Unix:SSHDConfig",main,"/data/inputs/script",,,,,3600
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/time.sh",1,app,system,script,,time,time,main,"/data/inputs/script",,,,,21600
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/top.sh",1,app,system,script,,top,top,main,"/data/inputs/script",,,,,60
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/update.sh",1,app,system,script,,"Unix:Update","Unix:Update",main,"/data/inputs/script",,,,,86400
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/uptime.sh",1,app,system,script,,"Unix:Uptime","Unix:Uptime",main,"/data/inputs/script",,,,,86400
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/usersWithLoginPrivs.sh",1,app,system,script,,usersWithLoginPrivs,usersWithLoginPrivs,main,"/data/inputs/script",,,,,3600
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/version.sh",1,app,system,script,,"Unix:Version","Unix:Version",main,"/data/inputs/script",,,,,86400
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/vmstat.sh",1,app,system,script,,vmstat,vmstat,main,"/data/inputs/script",,,,,60
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/vsftpdChecker.sh",1,app,system,script,,"Unix:VSFTPDConfig","Unix:VSFTPDConfig",main,"/data/inputs/script",,,,,86400
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/who.sh",1,app,system,script,,who,who,main,"/data/inputs/script",,,,,150
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/root/.bash_history",1,app,system,monitor,,,"bash_history",main,"/data/inputs/monitor",,,,,
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/var/adm",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.log|log$|messages)",,,
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_TA_nix","/var/log",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.log|log$|messages|secure|auth|mesg$|cron$|acpid$|\.out)","(lastlog|anaconda\.syslog)",,
+CM1,"PROD-CM-1|cluster_master|search_head","Splunk_Use_Case_Arsenal","$SPLUNK_HOME/etc/apps",0,app,system,monitor,,,"splunk:essentials:json",main,"/data/inputs/monitor",,"exampleInfo.json$|usecases.json$|ShowcaseInfo.json$","","<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh app",0,app,system,script,,,"splunk:config:btool:app",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh authentication",0,app,system,script,,,"splunk:config:btool:authentication",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh authorize",0,app,system,script,,,"splunk:config:btool:authorize",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh indexes",0,app,system,script,,,"splunk:config:btool:indexes",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh inputs",0,app,system,script,,,"splunk:config:btool:inputs",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh limits",0,app,system,script,,,"splunk:config:btool:limits",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh outputs",0,app,system,script,,,"splunk:config:btool:outputs",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh props",0,app,system,script,,,"splunk:config:btool:props",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh rolemap",0,app,system,script,,,"splunk:config:btool:rolemap",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh saml",0,app,system,script,,,"splunk:config:btool:saml",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh server",0,app,system,script,,,"splunk:config:btool:server",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh transforms",0,app,system,script,,,"splunk:config:btool:transforms",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head",btool,"/opt/splunk/etc/apps/btool/bin/btool.sh web",0,app,system,script,,,"splunk:config:btool:web",main,"/data/inputs/script",,,,,300
+CM1,"PROD-CM-1|cluster_master|search_head","config_analytics","$SPLUNK_HOME/etc/....conf",0,app,system,monitor,,,conf,conf,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","config_analytics","$SPLUNK_HOME/etc/....css",0,app,system,monitor,,,css,views,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","config_analytics","$SPLUNK_HOME/etc/....htm",0,app,system,monitor,,,html,views,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","config_analytics","$SPLUNK_HOME/etc/....xml",0,app,system,monitor,,,views,views,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","config_analytics","$SPLUNK_HOME/etc/users/*/*/history/*.csv",0,app,system,monitor,,,csv,views,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","introspection_generator_addon","$SPLUNK_HOME/var/log/introspection",0,app,system,monitor,,,,"_introspection","/data/inputs/monitor",,,,,
+CM1,"PROD-CM-1|cluster_master|search_head","introspection_generator_addon","/opt/splunk/etc/apps/introspection_generator_addon/bin/collector.path",0,app,system,script,,,"splunk_resource_usage__internal",main,"/data/inputs/script",,,,,0
+CM1,"PROD-CM-1|cluster_master|search_head","splunk-dashboard-app","/opt/splunk/etc/apps/splunk-dashboard-app/bin/save_image_and_icon_on_install.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+CM1,"PROD-CM-1|cluster_master|search_head","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/instrumentation.py",0,app,system,script,,"instrumentation_scripted_input","splunk_telemetry_log","_telemetry","/data/inputs/script",,,,,"0 * * * *"
+CM1,"PROD-CM-1|cluster_master|search_head","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/on_splunk_start.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+CM1,"PROD-CM-1|cluster_master|search_head","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/schedule_delete.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"0 0 * * *"
+CM1,"PROD-CM-1|cluster_master|search_head","splunk_monitoring_console","/opt/splunk/etc/apps/splunk_monitoring_console/bin/dmc_config.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+CM1,"PROD-CM-1|cluster_master|search_head",system,"$SPLUNK_HOME/etc/splunk.version",0,system,system,monitor,,,"splunk_version","_internal","/data/inputs/monitor",,,,,
+CM1,"PROD-CM-1|cluster_master|search_head",system,"$SPLUNK_HOME/var/log/splunk",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+CM1,"PROD-CM-1|cluster_master|search_head",system,"$SPLUNK_HOME/var/log/splunk/license_usage_summary.log",0,system,system,monitor,,,,"_telemetry","/data/inputs/monitor",,,,,
+CM1,"PROD-CM-1|cluster_master|search_head",system,"$SPLUNK_HOME/var/log/splunk/splunk_instrumentation_cloud.log*",0,system,system,monitor,,,"splunk_cloud_telemetry","_telemetry","/data/inputs/monitor",,,,,
+CM1,"PROD-CM-1|cluster_master|search_head",system,"$SPLUNK_HOME/var/log/watchdog/watchdog.log*",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+CM1,"PROD-CM-1|cluster_master|search_head",system,"$SPLUNK_HOME/var/run/splunk/search_telemetry/*search_telemetry.json",0,system,system,monitor,,,"search_telemetry","_introspection","/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head",system,"$SPLUNK_HOME/var/spool/splunk",0,system,system,monitor,,,,main,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head",system,"$SPLUNK_HOME/var/spool/splunk/...stash_new",1,system,system,monitor,,,"stash_new",main,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","ta-confversion","/opt/splunk/etc/(*.conf|(local|default).meta)",0,app,system,monitor,,,"splunk_conf_file",main,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","ta-confversion","/opt/splunk/etc/apps/*/*/(*.conf|(local|default).meta)",0,app,system,monitor,,,"splunk_conf_file",main,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","ta-confversion","/opt/splunk/etc/deployment-apps/*/*/(*.conf|(local|default).meta)",0,app,system,monitor,,,"splunk_conf_file",main,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","ta-confversion","/opt/splunk/etc/master-apps/*/*/(*.conf|(local|default).meta)",0,app,system,monitor,,,"splunk_conf_file",main,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","ta-confversion","/opt/splunk/etc/shcluster/apps/*/*/(*.conf|(local|default).meta)",0,app,system,monitor,,,"splunk_conf_file",main,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","ta-confversion","/opt/splunk/etc/slave-apps/*/*/(*.conf|(local|default).meta)",0,app,system,monitor,,,"splunk_conf_file",main,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","ta-confversion","/opt/splunk/etc/system/*/(*.conf|(local|default).meta)",0,app,system,monitor,,,"splunk_conf_file",main,"/data/inputs/monitor",,,,"<SOURCE>",
+CM1,"PROD-CM-1|cluster_master|search_head","ta-confversion","/opt/splunk/etc/users/*/*/*/(*.conf|(local|default).meta)",0,app,system,monitor,,,"splunk_conf_file",main,"/data/inputs/monitor",,,,"<SOURCE>",
+ES,"PROD-ES-1|search_head","DA-ESS-IdentityManagement","confcheck_es_deprecate_investigators",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,31104000
+ES,"PROD-ES-1|search_head","DA-ESS-NetworkProtection","whois_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","da_ess_threat_default",0,app,system,"threat_intelligence_manager",,"ModularInput:ThreatIntelligenceManager","ModularInput:ThreatIntelligenceManager","_internal","/data/inputs/threat_intelligence_manager",,,,,""
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","da_ess_threat_local",0,app,system,"threat_intelligence_manager",,"ModularInput:ThreatIntelligenceManager","ModularInput:ThreatIntelligenceManager","_internal","/data/inputs/threat_intelligence_manager",,,,,""
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","hailataxii_malware",0,app,system,threatlist,"Hail a TAXII.com malware domain host list","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,86400
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","local_certificate_intel",0,app,system,threatlist,"Threat intelligence pertaining to certificates","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","local_domain_intel",0,app,system,"data_migrator","Threat intelligence pertaining to domains","ModularInput:Threatlist","ModularInput:Threatlist",main,"/data/inputs/data_migrator",,,,,43200
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","local_email_intel",0,app,system,threatlist,"Threat intelligence pertaining to email","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","local_file_intel",0,app,system,threatlist,"Threat intelligence pertaining to files","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","local_http_intel",0,app,system,threatlist,"Threat intelligence pertaining to HTTP","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","local_ip_intel",0,app,system,threatlist,"Threat intelligence pertaining to IPs","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","local_lookups",0,app,system,"threat_intelligence_manager",,"ModularInput:ThreatIntelligenceManager","ModularInput:ThreatIntelligenceManager","_internal","/data/inputs/threat_intelligence_manager",,,,,""
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","local_process_intel",0,app,system,threatlist,"Threat intelligence pertaining to processes","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","local_registry_intel",0,app,system,threatlist,"Threat intelligence pertaining to the Windows registry","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","local_service_intel",0,app,system,threatlist,"Threat intelligence pertaining to services","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","local_user_intel",0,app,system,threatlist,"Threat intelligence pertaining to users","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","DA-ESS-ThreatIntelligence","sa_threat_local",0,app,system,"threat_intelligence_manager",,"ModularInput:ThreatIntelligenceManager","ModularInput:ThreatIntelligenceManager","_internal","/data/inputs/threat_intelligence_manager",,,,,""
+ES,"PROD-ES-1|search_head","SA-AccessProtection","access_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+ES,"PROD-ES-1|search_head","SA-AuditAndDataProtection","events_per_day",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+ES,"PROD-ES-1|search_head","SA-EndpointProtection","listeningports_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+ES,"PROD-ES-1|search_head","SA-EndpointProtection","localprocesses_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+ES,"PROD-ES-1|search_head","SA-EndpointProtection","malware_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+ES,"PROD-ES-1|search_head","SA-EndpointProtection","useraccounts_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+ES,"PROD-ES-1|search_head","SA-IdentityManagement","administrative_identities",0,app,system,"identity_manager","List of commonly-used administrative or privileged identities.",,,main,"/data/inputs/identity_manager",,,1,,""
+ES,"PROD-ES-1|search_head","SA-IdentityManagement","confcheck_default_identity_lookups",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+ES,"PROD-ES-1|search_head","SA-IdentityManagement","demo_assets",0,app,system,"identity_manager","Demonstration asset list.",,,main,"/data/inputs/identity_manager",,,1,,""
+ES,"PROD-ES-1|search_head","SA-IdentityManagement","demo_identities",0,app,system,"identity_manager","Demonstration identity list.",,,main,"/data/inputs/identity_manager",,,1,,""
+ES,"PROD-ES-1|search_head","SA-IdentityManagement","static_assets",0,app,system,"identity_manager","List containing static assets.",,,main,"/data/inputs/identity_manager",,,1,,""
+ES,"PROD-ES-1|search_head","SA-IdentityManagement","static_identities",0,app,system,"identity_manager","List containing static identities.",,,main,"/data/inputs/identity_manager",,,1,,""
+ES,"PROD-ES-1|search_head","SA-NetworkProtection","communication_rule_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+ES,"PROD-ES-1|search_head","SA-NetworkProtection","ids_attack_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+ES,"PROD-ES-1|search_head","SA-NetworkProtection","whois_domaintools",1,app,system,whois,,"Whois:Domaintools","Whois:Domaintools",whois,"/data/inputs/whois",,,,,
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","alexa_top_one_million_sites",0,app,system,threatlist,"Alexa Top 1 Million Sites, copyright 2014, Alexa Internet (www.alexa.com)","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,86400
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","cisco_top_one_million_sites",0,app,system,threatlist,"Cisco Umbrella Top 1 Million Sites, copyright 2018, Cisco Umbrella","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,86400
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","confcheck_correlation_searches",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,"20 3 * * *"
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","emerging_threats_compromised_ip_blocklist",0,app,system,threatlist,"Emerging Threats compromised IPs blocklist","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","emerging_threats_ip_blocklist",0,app,system,threatlist,"Emerging Threats fwip rules","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","iblocklist_logmein",0,app,system,threatlist,"Addresses that are used by the LogMeIn product to enable unauthorized remote access","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","iblocklist_piratebay",0,app,system,threatlist,"Addresses that are commonly associated with known PirateBay sites","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","iblocklist_proxy",0,app,system,threatlist,"Addresses that are commonly associated with known traffic-proxy sites","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","iblocklist_rapidshare",0,app,system,threatlist,"Addresses that are commonly associated with known RapidShare sites","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","iblocklist_spyware",0,app,system,threatlist,"Addresses that are commonly associated with known spyware sites","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","iblocklist_tor",0,app,system,threatlist,"Addresses that are commonly associated with known Tor sites","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","iblocklist_web_attacker",0,app,system,threatlist,"Addresses that are commonly associated with known malicious attacker sites","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","icann_top_level_domain_list",0,app,system,threatlist,"ICANN Top-level Domains List","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,1296000
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","incident_review",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","incident_review_rule_ids",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","malware_domains",0,app,system,threatlist,"Malware Domain Blocklist","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","maxmind_geoip_asn_ipv4",0,app,system,threatlist,"MaxMind GeoIP ASN IPv4 database","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,1296000
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","maxmind_geoip_asn_ipv6",0,app,system,threatlist,"MaxMind GeoIP ASN IPv6 database","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,1296000
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","mozilla_public_suffix_list",0,app,system,threatlist,"Mozilla Public Suffix List","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,604800
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence",phishtank,0,app,system,threatlist,"Phishtank Database","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence",sans,0,app,system,threatlist,"SANS blocklist","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","zeus_bad_ip_blocklist",0,app,system,threatlist,"abuse.ch ZeuS blocklist (bad IPs only)","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-ThreatIntelligence","zeus_standard_ip_blocklist",0,app,system,threatlist,"abuse.ch ZeuS blocklist (standard)","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+ES,"PROD-ES-1|search_head","SA-Utils","confcheck_modaction_makestreams",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+ES,"PROD-ES-1|search_head","SecKit_SA_idm_common","seckit_idm_common_assets_networks",0,app,system,"identity_manager","List containing CIDR assets built from static lists and dhcp data.",,,main,"/data/inputs/identity_manager",,,1,,""
+ES,"PROD-ES-1|search_head","SecKit_SA_idm_windows","seckit_idm_windows_assets",0,app,system,"identity_manager","List containing assets built from searches of ADMON data.",,,main,"/data/inputs/identity_manager",,,1,,""
+ES,"PROD-ES-1|search_head","SecKit_SA_idm_windows","seckit_idm_windows_assets_identities",0,app,system,"identity_manager","List containing identities build from searches of ADMON data for machine accounts.",,,main,"/data/inputs/identity_manager",,,1,,""
+ES,"PROD-ES-1|search_head","SecKit_SA_idm_windows","seckit_idm_windows_identities",0,app,system,"identity_manager","List containing identities build from searches of ADMON data for machine accounts.",,,main,"/data/inputs/identity_manager",,,1,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"$SPLUNK_HOME/etc/apps/SplunkEnterpriseSecuritySuite/bin/import_icons_SplunkEnterpriseSecuritySuite.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"Application_State",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",0,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,Authentication,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,Certificates,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,Change,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"Change_Analysis",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",0,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"Domain_Analysis",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,Email,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,Endpoint,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"Incident_Management",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"Intrusion_Detection",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,Malware,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"Network_Resolution",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"Network_Sessions",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"Network_Traffic",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,Performance,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,Risk,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"Splunk_Audit",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"Ticket_Management",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,Updates,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,Vulnerabilities,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,Web,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_app_exports",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,60
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_app_version",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_conf_cleanup",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_correlationmigration",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,600
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_deprecate_apps",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,"10 3 * * *"
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_event_seq_running_templates",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_identity_correlation",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_migrate_investigations",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_migrate_reviewstatus_transitions",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_sync_investigation_xrefs",0,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"content_importer",0,app,system,"ess_content_importer",,,,main,"/data/inputs/ess_content_importer",,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"enforce_es_permissions",0,app,system,"app_permissions_manager",,"ModularInput:AppPermissionsManager","ModularInput:AppPermissionsManager","_internal","/data/inputs/app_permissions_manager",,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"update_es",1,app,system,"app_imports_update",,,,main,"/data/inputs/app_imports_update",,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"update_es_da",1,app,system,"app_imports_update",,,,main,"/data/inputs/app_imports_update",,,,,""
+ES,"PROD-ES-1|search_head",SplunkEnterpriseSecuritySuite,"update_es_main",1,app,system,"app_imports_update",,,,main,"/data/inputs/app_imports_update",,,,,""
+ES,"PROD-ES-1|search_head","Splunk_SA_CIM","$SPLUNK_HOME/var/spool/splunk/...stash_common_action_model",0,app,system,monitor,,,"stash_common_action_model",main,"/data/inputs/monitor",,,,"<SOURCE>",
+ES,"PROD-ES-1|search_head","Splunk_SA_CIM","$SPLUNK_HOME\var\spool\splunk\...stash_common_action_model",1,app,system,monitor,,,"stash_common_action_model",main,"/data/inputs/monitor",,,,"<SOURCE>",
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/Library/Logs",1,app,system,monitor,,,,main,"/data/inputs/monitor",,,,,
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/etc",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.conf|\.cfg|config$|\.ini|\.init|\.cf|\.cnf|shrc$|^ifcfg|\.profile|\.rc|\.rules|\.tab|tab$|\.login|policy$)",,,
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/home/*/.bash_history",1,app,system,monitor,,,"bash_history",main,"/data/inputs/monitor",,,,,
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/bandwidth.sh",1,app,system,script,,bandwidth,bandwidth,main,"/data/inputs/script",,,,,60
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/cpu.sh",1,app,system,script,,cpu,cpu,main,"/data/inputs/script",,,,,30
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/df.sh",1,app,system,script,,df,df,main,"/data/inputs/script",,,,,300
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/hardware.sh",1,app,system,script,,hardware,hardware,main,"/data/inputs/script",,,,,36000
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/interfaces.sh",1,app,system,script,,interfaces,interfaces,main,"/data/inputs/script",,,,,60
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/iostat.sh",1,app,system,script,,iostat,iostat,main,"/data/inputs/script",,,,,60
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/lastlog.sh",1,app,system,script,,lastlog,lastlog,main,"/data/inputs/script",,,,,300
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/lsof.sh",1,app,system,script,,lsof,lsof,main,"/data/inputs/script",,,,,600
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/netstat.sh",1,app,system,script,,netstat,netstat,main,"/data/inputs/script",,,,,60
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/nfsiostat.sh",1,app,system,script,,nfsiostat,nfsiostat,main,"/data/inputs/script",,,,,60
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/openPorts.sh",1,app,system,script,,openPorts,openPorts,main,"/data/inputs/script",,,,,300
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/openPortsEnhanced.sh",1,app,system,script,,"Unix:ListeningPorts","Unix:ListeningPorts",main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/package.sh",1,app,system,script,,package,package,main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/passwd.sh",1,app,system,script,,"Unix:UserAccounts","Unix:UserAccounts",main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/protocol.sh",1,app,system,script,,protocol,protocol,main,"/data/inputs/script",,,,,60
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/ps.sh",1,app,system,script,,ps,ps,main,"/data/inputs/script",,,,,30
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/rlog.sh",1,app,system,script,,auditd,auditd,main,"/data/inputs/script",,,,,60
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/selinuxChecker.sh",1,app,system,script,,"Linux:SELinuxConfig","Linux:SELinuxConfig",main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/service.sh",1,app,system,script,,"Unix:Service","Unix:Service",main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/sshdChecker.sh",1,app,system,script,,"Unix:SSHDConfig","Unix:SSHDConfig",main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/time.sh",1,app,system,script,,time,time,main,"/data/inputs/script",,,,,21600
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/top.sh",1,app,system,script,,top,top,main,"/data/inputs/script",,,,,60
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/update.sh",1,app,system,script,,"Unix:Update","Unix:Update",main,"/data/inputs/script",,,,,86400
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/uptime.sh",1,app,system,script,,"Unix:Uptime","Unix:Uptime",main,"/data/inputs/script",,,,,86400
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/usersWithLoginPrivs.sh",1,app,system,script,,usersWithLoginPrivs,usersWithLoginPrivs,main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/version.sh",1,app,system,script,,"Unix:Version","Unix:Version",main,"/data/inputs/script",,,,,86400
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/vmstat.sh",1,app,system,script,,vmstat,vmstat,main,"/data/inputs/script",,,,,60
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/vsftpdChecker.sh",1,app,system,script,,"Unix:VSFTPDConfig","Unix:VSFTPDConfig",main,"/data/inputs/script",,,,,86400
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/who.sh",1,app,system,script,,who,who,main,"/data/inputs/script",,,,,150
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/root/.bash_history",1,app,system,monitor,,,"bash_history",main,"/data/inputs/monitor",,,,,
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/var/adm",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.log|log$|messages)",,,
+ES,"PROD-ES-1|search_head","Splunk_TA_nix","/var/log",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.log|log$|messages|secure|auth|mesg$|cron$|acpid$|\.out)","(lastlog|anaconda\.syslog)",,
+ES,"PROD-ES-1|search_head","Splunk_TA_symantec-ep","$SPLUNK_HOME/etc/apps/Splunk_TA_symantec-ep/bin/malware_category_update.py",1,app,system,script,,,,main,"/data/inputs/script",,,,,86400
+ES,"PROD-ES-1|search_head","Splunk_TA_windows","$SPLUNK_HOME\var\log\Splunk_TA_windows\WindowsUpdate.log",1,app,system,monitor,,,WindowsUpdateLog,main,"/data/inputs/monitor",,,,,
+ES,"PROD-ES-1|search_head","Splunk_TA_windows","$WINDIR\System32\DHCP",1,app,system,monitor,,,DhcpSrvLog,main,"/data/inputs/monitor",,"DhcpSrvLog*",,"<SOURCE>",
+ES,"PROD-ES-1|search_head","Splunk_TA_windows","$WINDIR\WindowsUpdate.log",1,app,system,monitor,,,WindowsUpdateLog,main,"/data/inputs/monitor",,,,,
+ES,"PROD-ES-1|search_head","Splunk_TA_windows","$WINDIR\debug\netlogon.log",1,app,system,monitor,,,"MSAD:NT6:Netlogon",main,"/data/inputs/monitor",,,,,
+ES,"PROD-ES-1|search_head","Splunk_TA_windows",".\bin\netsh_address.bat",1,app,system,script,,,"Script:NetworkConfiguration",main,"/data/inputs/script",,,,,86400
+ES,"PROD-ES-1|search_head","Splunk_TA_windows",".\bin\runpowershell.cmd dns-health.ps1",1,app,system,script,,Powershell,"MSAD:NT6:DNS-Health",main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","Splunk_TA_windows",".\bin\runpowershell.cmd dns-zoneinfo.ps1",1,app,system,script,,Powershell,"MSAD:NT6:DNS-Zone-Information",main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","Splunk_TA_windows",".\bin\runpowershell.cmd nt6-health.ps1",1,app,system,script,,Powershell,"MSAD:NT6:Health",main,"/data/inputs/script",,,,,300
+ES,"PROD-ES-1|search_head","Splunk_TA_windows",".\bin\runpowershell.cmd nt6-repl-stat.ps1",1,app,system,script,,Powershell,"MSAD:NT6:Replication",main,"/data/inputs/script",,,,,300
+ES,"PROD-ES-1|search_head","Splunk_TA_windows",".\bin\runpowershell.cmd nt6-siteinfo.ps1",1,app,system,script,,Powershell,"MSAD:NT6:SiteInfo",main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","Splunk_TA_windows",".\bin\win_installed_apps.bat",1,app,system,script,,,"Script:InstalledApps",main,"/data/inputs/script",,,,,86400
+ES,"PROD-ES-1|search_head","Splunk_TA_windows",".\bin\win_listening_ports.bat",1,app,system,script,,,"Script:ListeningPorts",main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","Splunk_TA_windows",".\bin\win_timesync_configuration.bat",1,app,system,script,,,"Script:TimesyncConfiguration",main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","Splunk_TA_windows",".\bin\win_timesync_status.bat",1,app,system,script,,,"Script:TimesyncStatus",main,"/data/inputs/script",,,,,3600
+ES,"PROD-ES-1|search_head","introspection_generator_addon","$SPLUNK_HOME/var/log/introspection",0,app,system,monitor,,,,"_introspection","/data/inputs/monitor",,,,,
+ES,"PROD-ES-1|search_head","introspection_generator_addon","/opt/splunk/etc/apps/introspection_generator_addon/bin/collector.path",0,app,system,script,,,"splunk_resource_usage__internal",main,"/data/inputs/script",,,,,0
+ES,"PROD-ES-1|search_head","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/instrumentation.py",0,app,system,script,,"instrumentation_scripted_input","splunk_telemetry_log","_telemetry","/data/inputs/script",,,,,"0 * * * *"
+ES,"PROD-ES-1|search_head","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/on_splunk_start.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+ES,"PROD-ES-1|search_head","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/schedule_delete.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"0 0 * * *"
+ES,"PROD-ES-1|search_head","splunk_monitoring_console","/opt/splunk/etc/apps/splunk_monitoring_console/bin/dmc_config.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+ES,"PROD-ES-1|search_head",system,"$SPLUNK_HOME/etc/splunk.version",0,system,system,monitor,,,"splunk_version","_internal","/data/inputs/monitor",,,,,
+ES,"PROD-ES-1|search_head",system,"$SPLUNK_HOME/var/log/splunk",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+ES,"PROD-ES-1|search_head",system,"$SPLUNK_HOME/var/log/splunk/license_usage_summary.log",0,system,system,monitor,,,,"_telemetry","/data/inputs/monitor",,,,,
+ES,"PROD-ES-1|search_head",system,"$SPLUNK_HOME/var/log/splunk/splunk_instrumentation_cloud.log*",0,system,system,monitor,,,"splunk_cloud_telemetry","_telemetry","/data/inputs/monitor",,,,,
+ES,"PROD-ES-1|search_head",system,"$SPLUNK_HOME/var/log/watchdog/watchdog.log*",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+ES,"PROD-ES-1|search_head",system,"$SPLUNK_HOME/var/run/splunk/search_telemetry/*search_telemetry.json",0,system,system,monitor,,,"search_telemetry","_introspection","/data/inputs/monitor",,,,"<SOURCE>",
+ES,"PROD-ES-1|search_head",system,"$SPLUNK_HOME/var/spool/splunk",1,system,system,monitor,,,,main,"/data/inputs/monitor",,,,"<SOURCE>",
+ES,"PROD-ES-1|search_head",system,"$SPLUNK_HOME/var/spool/splunk/...stash_new",0,system,system,monitor,,,"stash_new",main,"/data/inputs/monitor",,,,"<SOURCE>",
+GMC,"PROD-GMC-1|search_head",SplunkJSApp,"$SPLUNK_HOME/etc/apps/SplunkJSApp/samples",0,app,system,monitor,,,,"tutorial_data","/data/inputs/monitor",,,,,
+GMC,"PROD-GMC-1|search_head","Splunk_SA_CIM","$SPLUNK_HOME/var/spool/splunk/...stash_common_action_model",0,app,system,monitor,,,"stash_common_action_model",main,"/data/inputs/monitor",,,,"<SOURCE>",
+GMC,"PROD-GMC-1|search_head","Splunk_SA_CIM","$SPLUNK_HOME\var\spool\splunk\...stash_common_action_model",0,app,system,monitor,,,"stash_common_action_model",main,"/data/inputs/monitor",,,,"<SOURCE>",
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/Library/Logs",1,app,system,monitor,,,,main,"/data/inputs/monitor",,,,,
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/etc",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.conf|\.cfg|config$|\.ini|\.init|\.cf|\.cnf|shrc$|^ifcfg|\.profile|\.rc|\.rules|\.tab|tab$|\.login|policy$)",,,
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/home/*/.bash_history",1,app,system,monitor,,,"bash_history",main,"/data/inputs/monitor",,,,,
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/bandwidth.sh",1,app,system,script,,bandwidth,bandwidth,main,"/data/inputs/script",,,,,60
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/cpu.sh",1,app,system,script,,cpu,cpu,main,"/data/inputs/script",,,,,30
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/df.sh",1,app,system,script,,df,df,main,"/data/inputs/script",,,,,300
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/hardware.sh",1,app,system,script,,hardware,hardware,main,"/data/inputs/script",,,,,36000
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/interfaces.sh",1,app,system,script,,interfaces,interfaces,main,"/data/inputs/script",,,,,60
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/iostat.sh",1,app,system,script,,iostat,iostat,main,"/data/inputs/script",,,,,60
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/lastlog.sh",1,app,system,script,,lastlog,lastlog,main,"/data/inputs/script",,,,,300
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/lsof.sh",1,app,system,script,,lsof,lsof,main,"/data/inputs/script",,,,,600
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/netstat.sh",1,app,system,script,,netstat,netstat,main,"/data/inputs/script",,,,,60
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/nfsiostat.sh",1,app,system,script,,nfsiostat,nfsiostat,main,"/data/inputs/script",,,,,60
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/openPorts.sh",1,app,system,script,,openPorts,openPorts,main,"/data/inputs/script",,,,,300
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/openPortsEnhanced.sh",1,app,system,script,,"Unix:ListeningPorts","Unix:ListeningPorts",main,"/data/inputs/script",,,,,3600
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/package.sh",1,app,system,script,,package,package,main,"/data/inputs/script",,,,,3600
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/passwd.sh",1,app,system,script,,"Unix:UserAccounts","Unix:UserAccounts",main,"/data/inputs/script",,,,,3600
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/protocol.sh",1,app,system,script,,protocol,protocol,main,"/data/inputs/script",,,,,60
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/ps.sh",1,app,system,script,,ps,ps,main,"/data/inputs/script",,,,,30
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/rlog.sh",1,app,system,script,,auditd,auditd,main,"/data/inputs/script",,,,,60
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/selinuxChecker.sh",1,app,system,script,,"Linux:SELinuxConfig","Linux:SELinuxConfig",main,"/data/inputs/script",,,,,3600
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/service.sh",1,app,system,script,,"Unix:Service","Unix:Service",main,"/data/inputs/script",,,,,3600
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/sshdChecker.sh",1,app,system,script,,"Unix:SSHDConfig","Unix:SSHDConfig",main,"/data/inputs/script",,,,,3600
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/time.sh",1,app,system,script,,time,time,main,"/data/inputs/script",,,,,21600
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/top.sh",1,app,system,script,,top,top,main,"/data/inputs/script",,,,,60
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/update.sh",1,app,system,script,,"Unix:Update","Unix:Update",main,"/data/inputs/script",,,,,86400
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/uptime.sh",1,app,system,script,,"Unix:Uptime","Unix:Uptime",main,"/data/inputs/script",,,,,86400
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/usersWithLoginPrivs.sh",1,app,system,script,,usersWithLoginPrivs,usersWithLoginPrivs,main,"/data/inputs/script",,,,,3600
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/version.sh",1,app,system,script,,"Unix:Version","Unix:Version",main,"/data/inputs/script",,,,,86400
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/vmstat.sh",1,app,system,script,,vmstat,vmstat,main,"/data/inputs/script",,,,,60
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/vsftpdChecker.sh",1,app,system,script,,"Unix:VSFTPDConfig","Unix:VSFTPDConfig",main,"/data/inputs/script",,,,,86400
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/opt/splunk/etc/apps/Splunk_TA_nix/bin/who.sh",1,app,system,script,,who,who,main,"/data/inputs/script",,,,,150
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/root/.bash_history",1,app,system,monitor,,,"bash_history",main,"/data/inputs/monitor",,,,,
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/var/adm",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.log|log$|messages)",,,
+GMC,"PROD-GMC-1|search_head","Splunk_TA_nix","/var/log",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.log|log$|messages|secure|auth|mesg$|cron$|acpid$|\.out)","(lastlog|anaconda\.syslog)",,
+GMC,"PROD-GMC-1|search_head","TA-Splunk_Monitor_Lookups","/opt/splunk/etc/apps/TA-Splunk_Monitor_Lookups/bin/monitor_lookup_files_apps.sh",0,app,system,script,,"Monitor_Lookup_Apps","splunk:monitor:lookup:apps","_internal","/data/inputs/script",,,,,600
+GMC,"PROD-GMC-1|search_head","TA-Splunk_Monitor_Lookups","/opt/splunk/etc/apps/TA-Splunk_Monitor_Lookups/bin/monitor_lookup_files_users.sh",0,app,system,script,,"Monitor_Lookup_Users","splunk:monitor:lookup:users","_internal","/data/inputs/script",,,,,600
+GMC,"PROD-GMC-1|search_head","introspection_generator_addon","$SPLUNK_HOME/var/log/introspection",0,app,system,monitor,,,,"_introspection","/data/inputs/monitor",,,,,
+GMC,"PROD-GMC-1|search_head","introspection_generator_addon","/opt/splunk/etc/apps/introspection_generator_addon/bin/collector.path",0,app,system,script,,,"splunk_resource_usage__internal",main,"/data/inputs/script",,,,,0
+GMC,"PROD-GMC-1|search_head","splunk_app_addon-builder","_tab_internal_monitor_inputs_",0,app,system,"validation_mi",,tabuilder,,"add_on_builder_index","/data/inputs/validation_mi",,,,,"-1"
+GMC,"PROD-GMC-1|search_head","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/instrumentation.py",0,app,system,script,,"instrumentation_scripted_input","splunk_telemetry_log","_telemetry","/data/inputs/script",,,,,"0 * * * *"
+GMC,"PROD-GMC-1|search_head","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/on_splunk_start.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+GMC,"PROD-GMC-1|search_head","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/schedule_delete.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"0 0 * * *"
+GMC,"PROD-GMC-1|search_head","splunk_monitoring_console","/opt/splunk/etc/apps/splunk_monitoring_console/bin/dmc_config.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+GMC,"PROD-GMC-1|search_head",system,"$SPLUNK_HOME/etc/splunk.version",0,system,system,monitor,,,"splunk_version","_internal","/data/inputs/monitor",,,,,
+GMC,"PROD-GMC-1|search_head",system,"$SPLUNK_HOME/var/log/splunk",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+GMC,"PROD-GMC-1|search_head",system,"$SPLUNK_HOME/var/log/splunk/license_usage_summary.log",0,system,system,monitor,,,,"_telemetry","/data/inputs/monitor",,,,,
+GMC,"PROD-GMC-1|search_head",system,"$SPLUNK_HOME/var/log/splunk/splunk_instrumentation_cloud.log*",0,system,system,monitor,,,"splunk_cloud_telemetry","_telemetry","/data/inputs/monitor",,,,,
+GMC,"PROD-GMC-1|search_head",system,"$SPLUNK_HOME/var/log/watchdog/watchdog.log*",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+GMC,"PROD-GMC-1|search_head",system,"$SPLUNK_HOME/var/run/splunk/search_telemetry/*search_telemetry.json",0,system,system,monitor,,,"search_telemetry","_introspection","/data/inputs/monitor",,,,"<SOURCE>",
+GMC,"PROD-GMC-1|search_head",system,"$SPLUNK_HOME/var/spool/splunk",0,system,system,monitor,,,,main,"/data/inputs/monitor",,,,"<SOURCE>",
+GMC,"PROD-GMC-1|search_head",system,"$SPLUNK_HOME/var/spool/splunk/...stash_new",0,system,system,monitor,,,"stash_new",main,"/data/inputs/monitor",,,,"<SOURCE>",
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/Library/Logs",1,app,system,monitor,,,,main,"/data/inputs/monitor",,,,,
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/etc",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.conf|\.cfg|config$|\.ini|\.init|\.cf|\.cnf|shrc$|^ifcfg|\.profile|\.rc|\.rules|\.tab|tab$|\.login|policy$)",,,
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/home/*/.bash_history",1,app,system,monitor,,,"bash_history",main,"/data/inputs/monitor",,,,,
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/bandwidth.sh",1,app,system,script,,bandwidth,bandwidth,main,"/data/inputs/script",,,,,60
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/cpu.sh",1,app,system,script,,cpu,cpu,main,"/data/inputs/script",,,,,30
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/df.sh",1,app,system,script,,df,df,main,"/data/inputs/script",,,,,300
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/hardware.sh",1,app,system,script,,hardware,hardware,main,"/data/inputs/script",,,,,36000
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/interfaces.sh",1,app,system,script,,interfaces,interfaces,main,"/data/inputs/script",,,,,60
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/iostat.sh",0,app,system,script,,iostat,iostat,osnixperf,"/data/inputs/script",,,,,60
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/lastlog.sh",1,app,system,script,,lastlog,lastlog,main,"/data/inputs/script",,,,,300
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/lsof.sh",1,app,system,script,,lsof,lsof,main,"/data/inputs/script",,,,,600
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/netstat.sh",0,app,system,script,,netstat,netstat,osnixperf,"/data/inputs/script",,,,,60
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/nfsiostat.sh",1,app,system,script,,nfsiostat,nfsiostat,main,"/data/inputs/script",,,,,60
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/openPorts.sh",1,app,system,script,,openPorts,openPorts,main,"/data/inputs/script",,,,,300
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/openPortsEnhanced.sh",1,app,system,script,,"Unix:ListeningPorts","Unix:ListeningPorts",main,"/data/inputs/script",,,,,3600
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/package.sh",1,app,system,script,,package,package,main,"/data/inputs/script",,,,,3600
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/passwd.sh",1,app,system,script,,"Unix:UserAccounts","Unix:UserAccounts",main,"/data/inputs/script",,,,,3600
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/protocol.sh",1,app,system,script,,protocol,protocol,main,"/data/inputs/script",,,,,60
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/ps.sh",1,app,system,script,,ps,ps,main,"/data/inputs/script",,,,,30
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/rlog.sh",1,app,system,script,,auditd,auditd,main,"/data/inputs/script",,,,,60
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/selinuxChecker.sh",1,app,system,script,,"Linux:SELinuxConfig","Linux:SELinuxConfig",main,"/data/inputs/script",,,,,3600
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/service.sh",1,app,system,script,,"Unix:Service","Unix:Service",main,"/data/inputs/script",,,,,3600
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/sshdChecker.sh",1,app,system,script,,"Unix:SSHDConfig","Unix:SSHDConfig",main,"/data/inputs/script",,,,,3600
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/time.sh",1,app,system,script,,time,time,main,"/data/inputs/script",,,,,21600
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/top.sh",1,app,system,script,,top,top,main,"/data/inputs/script",,,,,60
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/update.sh",1,app,system,script,,"Unix:Update","Unix:Update",main,"/data/inputs/script",,,,,86400
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/uptime.sh",1,app,system,script,,"Unix:Uptime","Unix:Uptime",main,"/data/inputs/script",,,,,86400
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/usersWithLoginPrivs.sh",1,app,system,script,,usersWithLoginPrivs,usersWithLoginPrivs,main,"/data/inputs/script",,,,,3600
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/version.sh",1,app,system,script,,"Unix:Version","Unix:Version",main,"/data/inputs/script",,,,,86400
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/vmstat.sh",1,app,system,script,,vmstat,vmstat,main,"/data/inputs/script",,,,,60
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/vsftpdChecker.sh",1,app,system,script,,"Unix:VSFTPDConfig","Unix:VSFTPDConfig",main,"/data/inputs/script",,,,,86400
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/who.sh",1,app,system,script,,who,who,main,"/data/inputs/script",,,,,150
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/root/.bash_history",1,app,system,monitor,,,"bash_history",main,"/data/inputs/monitor",,,,,
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/var/adm",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.log|log$|messages)",,,
+IDX1,"PROD-IDXC-1|indexer","Splunk_TA_nix","/var/log",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.log|log$|messages|secure|auth|mesg$|cron$|acpid$|\.out)","(lastlog|anaconda\.syslog)",,
+IDX1,"PROD-IDXC-1|indexer","introspection_generator_addon","$SPLUNK_HOME/var/log/introspection",0,app,system,monitor,,,,"_introspection","/data/inputs/monitor",,,,,
+IDX1,"PROD-IDXC-1|indexer","introspection_generator_addon","/opt/splunk/etc/apps/introspection_generator_addon/bin/collector.path",0,app,system,script,,,"splunk_resource_usage__internal",main,"/data/inputs/script",,,,,0
+IDX1,"PROD-IDXC-1|indexer","org_cluster_indexer_base",9997,0,app,system,cooked,,,,main,"/data/inputs/tcp/cooked",,,,,
+IDX1,"PROD-IDXC-1|indexer","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/instrumentation.py",0,app,system,script,,"instrumentation_scripted_input","splunk_telemetry_log","_telemetry","/data/inputs/script",,,,,"0 * * * *"
+IDX1,"PROD-IDXC-1|indexer","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/on_splunk_start.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+IDX1,"PROD-IDXC-1|indexer","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/schedule_delete.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"0 0 * * *"
+IDX1,"PROD-IDXC-1|indexer","splunk_monitoring_console","/opt/splunk/etc/apps/splunk_monitoring_console/bin/dmc_config.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+IDX1,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/etc/splunk.version",0,system,system,monitor,,,"splunk_version","_internal","/data/inputs/monitor",,,,,
+IDX1,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/log/splunk",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+IDX1,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/log/splunk/license_usage_summary.log",0,system,system,monitor,,,,"_telemetry","/data/inputs/monitor",,,,,
+IDX1,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/log/splunk/splunk_instrumentation_cloud.log*",0,system,system,monitor,,,"splunk_cloud_telemetry","_telemetry","/data/inputs/monitor",,,,,
+IDX1,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/log/watchdog/watchdog.log*",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+IDX1,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/run/splunk/search_telemetry/*search_telemetry.json",0,system,system,monitor,,,"search_telemetry","_introspection","/data/inputs/monitor",,,,"<SOURCE>",
+IDX1,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/spool/splunk",1,system,system,monitor,,,,main,"/data/inputs/monitor",,,,"<SOURCE>",
+IDX1,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/spool/splunk/...stash_new",0,system,system,monitor,,,"stash_new",main,"/data/inputs/monitor",,,,"<SOURCE>",
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/Library/Logs",1,app,system,monitor,,,,main,"/data/inputs/monitor",,,,,
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/etc",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.conf|\.cfg|config$|\.ini|\.init|\.cf|\.cnf|shrc$|^ifcfg|\.profile|\.rc|\.rules|\.tab|tab$|\.login|policy$)",,,
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/home/*/.bash_history",1,app,system,monitor,,,"bash_history",main,"/data/inputs/monitor",,,,,
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/bandwidth.sh",1,app,system,script,,bandwidth,bandwidth,main,"/data/inputs/script",,,,,60
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/cpu.sh",1,app,system,script,,cpu,cpu,main,"/data/inputs/script",,,,,30
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/df.sh",1,app,system,script,,df,df,main,"/data/inputs/script",,,,,300
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/hardware.sh",1,app,system,script,,hardware,hardware,main,"/data/inputs/script",,,,,36000
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/interfaces.sh",1,app,system,script,,interfaces,interfaces,main,"/data/inputs/script",,,,,60
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/iostat.sh",0,app,system,script,,iostat,iostat,osnixperf,"/data/inputs/script",,,,,60
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/lastlog.sh",1,app,system,script,,lastlog,lastlog,main,"/data/inputs/script",,,,,300
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/lsof.sh",1,app,system,script,,lsof,lsof,main,"/data/inputs/script",,,,,600
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/netstat.sh",0,app,system,script,,netstat,netstat,osnixperf,"/data/inputs/script",,,,,60
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/nfsiostat.sh",1,app,system,script,,nfsiostat,nfsiostat,main,"/data/inputs/script",,,,,60
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/openPorts.sh",1,app,system,script,,openPorts,openPorts,main,"/data/inputs/script",,,,,300
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/openPortsEnhanced.sh",1,app,system,script,,"Unix:ListeningPorts","Unix:ListeningPorts",main,"/data/inputs/script",,,,,3600
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/package.sh",1,app,system,script,,package,package,main,"/data/inputs/script",,,,,3600
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/passwd.sh",1,app,system,script,,"Unix:UserAccounts","Unix:UserAccounts",main,"/data/inputs/script",,,,,3600
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/protocol.sh",1,app,system,script,,protocol,protocol,main,"/data/inputs/script",,,,,60
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/ps.sh",1,app,system,script,,ps,ps,main,"/data/inputs/script",,,,,30
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/rlog.sh",1,app,system,script,,auditd,auditd,main,"/data/inputs/script",,,,,60
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/selinuxChecker.sh",1,app,system,script,,"Linux:SELinuxConfig","Linux:SELinuxConfig",main,"/data/inputs/script",,,,,3600
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/service.sh",1,app,system,script,,"Unix:Service","Unix:Service",main,"/data/inputs/script",,,,,3600
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/sshdChecker.sh",1,app,system,script,,"Unix:SSHDConfig","Unix:SSHDConfig",main,"/data/inputs/script",,,,,3600
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/time.sh",1,app,system,script,,time,time,main,"/data/inputs/script",,,,,21600
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/top.sh",1,app,system,script,,top,top,main,"/data/inputs/script",,,,,60
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/update.sh",1,app,system,script,,"Unix:Update","Unix:Update",main,"/data/inputs/script",,,,,86400
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/uptime.sh",1,app,system,script,,"Unix:Uptime","Unix:Uptime",main,"/data/inputs/script",,,,,86400
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/usersWithLoginPrivs.sh",1,app,system,script,,usersWithLoginPrivs,usersWithLoginPrivs,main,"/data/inputs/script",,,,,3600
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/version.sh",1,app,system,script,,"Unix:Version","Unix:Version",main,"/data/inputs/script",,,,,86400
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/vmstat.sh",1,app,system,script,,vmstat,vmstat,main,"/data/inputs/script",,,,,60
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/vsftpdChecker.sh",1,app,system,script,,"Unix:VSFTPDConfig","Unix:VSFTPDConfig",main,"/data/inputs/script",,,,,86400
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/who.sh",1,app,system,script,,who,who,main,"/data/inputs/script",,,,,150
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/root/.bash_history",1,app,system,monitor,,,"bash_history",main,"/data/inputs/monitor",,,,,
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/var/adm",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.log|log$|messages)",,,
+IDX2,"PROD-IDXC-1|indexer","Splunk_TA_nix","/var/log",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.log|log$|messages|secure|auth|mesg$|cron$|acpid$|\.out)","(lastlog|anaconda\.syslog)",,
+IDX2,"PROD-IDXC-1|indexer","introspection_generator_addon","$SPLUNK_HOME/var/log/introspection",0,app,system,monitor,,,,"_introspection","/data/inputs/monitor",,,,,
+IDX2,"PROD-IDXC-1|indexer","introspection_generator_addon","/opt/splunk/etc/apps/introspection_generator_addon/bin/collector.path",0,app,system,script,,,"splunk_resource_usage__internal",main,"/data/inputs/script",,,,,0
+IDX2,"PROD-IDXC-1|indexer","org_cluster_indexer_base",9997,0,app,system,cooked,,,,main,"/data/inputs/tcp/cooked",,,,,
+IDX2,"PROD-IDXC-1|indexer","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/instrumentation.py",0,app,system,script,,"instrumentation_scripted_input","splunk_telemetry_log","_telemetry","/data/inputs/script",,,,,"0 * * * *"
+IDX2,"PROD-IDXC-1|indexer","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/on_splunk_start.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+IDX2,"PROD-IDXC-1|indexer","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/schedule_delete.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"0 0 * * *"
+IDX2,"PROD-IDXC-1|indexer","splunk_monitoring_console","/opt/splunk/etc/apps/splunk_monitoring_console/bin/dmc_config.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+IDX2,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/etc/splunk.version",0,system,system,monitor,,,"splunk_version","_internal","/data/inputs/monitor",,,,,
+IDX2,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/log/splunk",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+IDX2,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/log/splunk/license_usage_summary.log",0,system,system,monitor,,,,"_telemetry","/data/inputs/monitor",,,,,
+IDX2,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/log/splunk/splunk_instrumentation_cloud.log*",0,system,system,monitor,,,"splunk_cloud_telemetry","_telemetry","/data/inputs/monitor",,,,,
+IDX2,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/log/watchdog/watchdog.log*",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+IDX2,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/run/splunk/search_telemetry/*search_telemetry.json",0,system,system,monitor,,,"search_telemetry","_introspection","/data/inputs/monitor",,,,"<SOURCE>",
+IDX2,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/spool/splunk",1,system,system,monitor,,,,main,"/data/inputs/monitor",,,,"<SOURCE>",
+IDX2,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/spool/splunk/...stash_new",0,system,system,monitor,,,"stash_new",main,"/data/inputs/monitor",,,,"<SOURCE>",
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/Library/Logs",1,app,system,monitor,,,,main,"/data/inputs/monitor",,,,,
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/etc",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.conf|\.cfg|config$|\.ini|\.init|\.cf|\.cnf|shrc$|^ifcfg|\.profile|\.rc|\.rules|\.tab|tab$|\.login|policy$)",,,
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/home/*/.bash_history",1,app,system,monitor,,,"bash_history",main,"/data/inputs/monitor",,,,,
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/bandwidth.sh",1,app,system,script,,bandwidth,bandwidth,main,"/data/inputs/script",,,,,60
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/cpu.sh",1,app,system,script,,cpu,cpu,main,"/data/inputs/script",,,,,30
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/df.sh",1,app,system,script,,df,df,main,"/data/inputs/script",,,,,300
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/hardware.sh",1,app,system,script,,hardware,hardware,main,"/data/inputs/script",,,,,36000
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/interfaces.sh",1,app,system,script,,interfaces,interfaces,main,"/data/inputs/script",,,,,60
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/iostat.sh",0,app,system,script,,iostat,iostat,osnixperf,"/data/inputs/script",,,,,60
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/lastlog.sh",1,app,system,script,,lastlog,lastlog,main,"/data/inputs/script",,,,,300
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/lsof.sh",1,app,system,script,,lsof,lsof,main,"/data/inputs/script",,,,,600
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/netstat.sh",0,app,system,script,,netstat,netstat,osnixperf,"/data/inputs/script",,,,,60
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/nfsiostat.sh",1,app,system,script,,nfsiostat,nfsiostat,main,"/data/inputs/script",,,,,60
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/openPorts.sh",1,app,system,script,,openPorts,openPorts,main,"/data/inputs/script",,,,,300
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/openPortsEnhanced.sh",1,app,system,script,,"Unix:ListeningPorts","Unix:ListeningPorts",main,"/data/inputs/script",,,,,3600
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/package.sh",1,app,system,script,,package,package,main,"/data/inputs/script",,,,,3600
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/passwd.sh",1,app,system,script,,"Unix:UserAccounts","Unix:UserAccounts",main,"/data/inputs/script",,,,,3600
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/protocol.sh",1,app,system,script,,protocol,protocol,main,"/data/inputs/script",,,,,60
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/ps.sh",1,app,system,script,,ps,ps,main,"/data/inputs/script",,,,,30
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/rlog.sh",1,app,system,script,,auditd,auditd,main,"/data/inputs/script",,,,,60
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/selinuxChecker.sh",1,app,system,script,,"Linux:SELinuxConfig","Linux:SELinuxConfig",main,"/data/inputs/script",,,,,3600
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/service.sh",1,app,system,script,,"Unix:Service","Unix:Service",main,"/data/inputs/script",,,,,3600
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/sshdChecker.sh",1,app,system,script,,"Unix:SSHDConfig","Unix:SSHDConfig",main,"/data/inputs/script",,,,,3600
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/time.sh",1,app,system,script,,time,time,main,"/data/inputs/script",,,,,21600
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/top.sh",1,app,system,script,,top,top,main,"/data/inputs/script",,,,,60
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/update.sh",1,app,system,script,,"Unix:Update","Unix:Update",main,"/data/inputs/script",,,,,86400
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/uptime.sh",1,app,system,script,,"Unix:Uptime","Unix:Uptime",main,"/data/inputs/script",,,,,86400
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/usersWithLoginPrivs.sh",1,app,system,script,,usersWithLoginPrivs,usersWithLoginPrivs,main,"/data/inputs/script",,,,,3600
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/version.sh",1,app,system,script,,"Unix:Version","Unix:Version",main,"/data/inputs/script",,,,,86400
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/vmstat.sh",1,app,system,script,,vmstat,vmstat,main,"/data/inputs/script",,,,,60
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/vsftpdChecker.sh",1,app,system,script,,"Unix:VSFTPDConfig","Unix:VSFTPDConfig",main,"/data/inputs/script",,,,,86400
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/opt/splunk/etc/slave-apps/Splunk_TA_nix/bin/who.sh",1,app,system,script,,who,who,main,"/data/inputs/script",,,,,150
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/root/.bash_history",1,app,system,monitor,,,"bash_history",main,"/data/inputs/monitor",,,,,
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/var/adm",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.log|log$|messages)",,,
+IDX3,"PROD-IDXC-1|indexer","Splunk_TA_nix","/var/log",1,app,system,monitor,,,,main,"/data/inputs/monitor",,"(\.log|log$|messages|secure|auth|mesg$|cron$|acpid$|\.out)","(lastlog|anaconda\.syslog)",,
+IDX3,"PROD-IDXC-1|indexer","introspection_generator_addon","$SPLUNK_HOME/var/log/introspection",0,app,system,monitor,,,,"_introspection","/data/inputs/monitor",,,,,
+IDX3,"PROD-IDXC-1|indexer","introspection_generator_addon","/opt/splunk/etc/apps/introspection_generator_addon/bin/collector.path",0,app,system,script,,,"splunk_resource_usage__internal",main,"/data/inputs/script",,,,,0
+IDX3,"PROD-IDXC-1|indexer","org_cluster_indexer_base",9997,0,app,system,cooked,,,,main,"/data/inputs/tcp/cooked",,,,,
+IDX3,"PROD-IDXC-1|indexer","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/instrumentation.py",0,app,system,script,,"instrumentation_scripted_input","splunk_telemetry_log","_telemetry","/data/inputs/script",,,,,"0 * * * *"
+IDX3,"PROD-IDXC-1|indexer","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/on_splunk_start.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+IDX3,"PROD-IDXC-1|indexer","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/schedule_delete.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"0 0 * * *"
+IDX3,"PROD-IDXC-1|indexer","splunk_monitoring_console","/opt/splunk/etc/apps/splunk_monitoring_console/bin/dmc_config.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+IDX3,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/etc/splunk.version",0,system,system,monitor,,,"splunk_version","_internal","/data/inputs/monitor",,,,,
+IDX3,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/log/splunk",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+IDX3,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/log/splunk/license_usage_summary.log",0,system,system,monitor,,,,"_telemetry","/data/inputs/monitor",,,,,
+IDX3,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/log/splunk/splunk_instrumentation_cloud.log*",0,system,system,monitor,,,"splunk_cloud_telemetry","_telemetry","/data/inputs/monitor",,,,,
+IDX3,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/log/watchdog/watchdog.log*",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+IDX3,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/run/splunk/search_telemetry/*search_telemetry.json",0,system,system,monitor,,,"search_telemetry","_introspection","/data/inputs/monitor",,,,"<SOURCE>",
+IDX3,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/spool/splunk",1,system,system,monitor,,,,main,"/data/inputs/monitor",,,,"<SOURCE>",
+IDX3,"PROD-IDXC-1|indexer",system,"$SPLUNK_HOME/var/spool/splunk/...stash_new",0,system,system,monitor,,,"stash_new",main,"/data/inputs/monitor",,,,"<SOURCE>",
+UC,"PROD-UC-1|search_head","DA-ESS-IdentityManagement","confcheck_es_deprecate_investigators",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,31104000
+UC,"PROD-UC-1|search_head","DA-ESS-NetworkProtection","whois_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","da_ess_threat_default",1,app,system,"threat_intelligence_manager",,"ModularInput:ThreatIntelligenceManager","ModularInput:ThreatIntelligenceManager","_internal","/data/inputs/threat_intelligence_manager",,,,,""
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","da_ess_threat_local",1,app,system,"threat_intelligence_manager",,"ModularInput:ThreatIntelligenceManager","ModularInput:ThreatIntelligenceManager","_internal","/data/inputs/threat_intelligence_manager",,,,,""
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","hailataxii_malware",1,app,system,threatlist,"Hail a TAXII.com malware domain host list","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,86400
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","local_certificate_intel",1,app,system,threatlist,"Threat intelligence pertaining to certificates","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","local_domain_intel",0,app,system,"data_migrator","Threat intelligence pertaining to domains","ModularInput:Threatlist","ModularInput:Threatlist",main,"/data/inputs/data_migrator",,,,,43200
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","local_email_intel",1,app,system,threatlist,"Threat intelligence pertaining to email","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","local_file_intel",1,app,system,threatlist,"Threat intelligence pertaining to files","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","local_http_intel",0,app,system,"data_migrator","Threat intelligence pertaining to HTTP","ModularInput:Threatlist","ModularInput:Threatlist",main,"/data/inputs/data_migrator",,,,,43200
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","local_ip_intel",0,app,system,"data_migrator","Threat intelligence pertaining to IPs","ModularInput:Threatlist","ModularInput:Threatlist",main,"/data/inputs/data_migrator",,,,,43200
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","local_lookups",1,app,system,"threat_intelligence_manager",,"ModularInput:ThreatIntelligenceManager","ModularInput:ThreatIntelligenceManager","_internal","/data/inputs/threat_intelligence_manager",,,,,""
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","local_process_intel",1,app,system,threatlist,"Threat intelligence pertaining to processes","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","local_registry_intel",1,app,system,threatlist,"Threat intelligence pertaining to the Windows registry","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","local_service_intel",1,app,system,threatlist,"Threat intelligence pertaining to services","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","local_user_intel",1,app,system,threatlist,"Threat intelligence pertaining to users","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","DA-ESS-ThreatIntelligence","sa_threat_local",1,app,system,"threat_intelligence_manager",,"ModularInput:ThreatIntelligenceManager","ModularInput:ThreatIntelligenceManager","_internal","/data/inputs/threat_intelligence_manager",,,,,""
+UC,"PROD-UC-1|search_head","SA-AccessProtection","access_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+UC,"PROD-UC-1|search_head","SA-AuditAndDataProtection","events_per_day",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+UC,"PROD-UC-1|search_head","SA-EndpointProtection","listeningports_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+UC,"PROD-UC-1|search_head","SA-EndpointProtection","localprocesses_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+UC,"PROD-UC-1|search_head","SA-EndpointProtection","malware_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+UC,"PROD-UC-1|search_head","SA-EndpointProtection","useraccounts_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+UC,"PROD-UC-1|search_head","SA-IdentityManagement","administrative_identities",1,app,system,"identity_manager","List of commonly-used administrative or privileged identities.",,,main,"/data/inputs/identity_manager",,,1,,""
+UC,"PROD-UC-1|search_head","SA-IdentityManagement","demo_assets",1,app,system,"identity_manager","Demonstration asset list.",,,main,"/data/inputs/identity_manager",,,1,,""
+UC,"PROD-UC-1|search_head","SA-IdentityManagement","demo_identities",1,app,system,"identity_manager","Demonstration identity list.",,,main,"/data/inputs/identity_manager",,,1,,""
+UC,"PROD-UC-1|search_head","SA-IdentityManagement","static_assets",1,app,system,"identity_manager","List containing static assets.",,,main,"/data/inputs/identity_manager",,,1,,""
+UC,"PROD-UC-1|search_head","SA-IdentityManagement","static_identities",1,app,system,"identity_manager","List containing static identities.",,,main,"/data/inputs/identity_manager",,,1,,""
+UC,"PROD-UC-1|search_head","SA-NetworkProtection","communication_rule_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+UC,"PROD-UC-1|search_head","SA-NetworkProtection","ids_attack_tracker",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+UC,"PROD-UC-1|search_head","SA-NetworkProtection","whois_domaintools",1,app,system,whois,,"Whois:Domaintools","Whois:Domaintools",whois,"/data/inputs/whois",,,,,
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","alexa_top_one_million_sites",1,app,system,threatlist,"Alexa Top 1 Million Sites, copyright 2014, Alexa Internet (www.alexa.com)","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,86400
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","cisco_top_one_million_sites",1,app,system,threatlist,"Cisco Umbrella Top 1 Million Sites, copyright 2018, Cisco Umbrella","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,86400
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","confcheck_correlation_searches",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,"20 3 * * *"
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","emerging_threats_compromised_ip_blocklist",1,app,system,threatlist,"Emerging Threats compromised IPs blocklist","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","emerging_threats_ip_blocklist",1,app,system,threatlist,"Emerging Threats fwip rules","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","iblocklist_logmein",1,app,system,threatlist,"Addresses that are used by the LogMeIn product to enable unauthorized remote access","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","iblocklist_piratebay",1,app,system,threatlist,"Addresses that are commonly associated with known PirateBay sites","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","iblocklist_proxy",1,app,system,threatlist,"Addresses that are commonly associated with known traffic-proxy sites","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","iblocklist_rapidshare",1,app,system,threatlist,"Addresses that are commonly associated with known RapidShare sites","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","iblocklist_spyware",1,app,system,threatlist,"Addresses that are commonly associated with known spyware sites","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","iblocklist_tor",1,app,system,threatlist,"Addresses that are commonly associated with known Tor sites","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","iblocklist_web_attacker",1,app,system,threatlist,"Addresses that are commonly associated with known malicious attacker sites","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","icann_top_level_domain_list",1,app,system,threatlist,"ICANN Top-level Domains List","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,1296000
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","incident_review",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","incident_review_rule_ids",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","malware_domains",1,app,system,threatlist,"Malware Domain Blocklist","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","maxmind_geoip_asn_ipv4",1,app,system,threatlist,"MaxMind GeoIP ASN IPv4 database","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,1296000
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","maxmind_geoip_asn_ipv6",1,app,system,threatlist,"MaxMind GeoIP ASN IPv6 database","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,1296000
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","mozilla_public_suffix_list",1,app,system,threatlist,"Mozilla Public Suffix List","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,604800
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence",phishtank,1,app,system,threatlist,"Phishtank Database","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence",sans,1,app,system,threatlist,"SANS blocklist","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","zeus_bad_ip_blocklist",1,app,system,threatlist,"abuse.ch ZeuS blocklist (bad IPs only)","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-ThreatIntelligence","zeus_standard_ip_blocklist",1,app,system,threatlist,"abuse.ch ZeuS blocklist (standard)","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head","SA-Utils","confcheck_modaction_makestreams",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"$SPLUNK_HOME/etc/apps/SplunkEnterpriseSecuritySuite/bin/import_icons_SplunkEnterpriseSecuritySuite.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"Application_State",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",0,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,Authentication,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,Certificates,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,Change,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"Change_Analysis",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",0,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"Domain_Analysis",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,Email,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,Endpoint,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"Incident_Management",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"Intrusion_Detection",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,Malware,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"Network_Resolution",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"Network_Sessions",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"Network_Traffic",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,Performance,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,Risk,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"Splunk_Audit",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,Test,1,app,system,threatlist,"bad actors","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"Ticket_Management",1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,Updates,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,Vulnerabilities,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,Web,1,app,system,"dm_accel_settings",,,,main,"/data/inputs/dm_accel_settings",1,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_app_exports",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,60
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_app_version",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_conf_cleanup",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_correlationmigration",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,600
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_deprecate_apps",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,"10 3 * * *"
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_event_seq_running_templates",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_identity_correlation",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_migrate_investigations",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_migrate_reviewstatus_transitions",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_es_sync_investigation_xrefs",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,86400
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"confcheck_lookup_table_size",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,"20 3 * * *"
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"content_importer",0,app,system,"ess_content_importer",,,,main,"/data/inputs/ess_content_importer",,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"deploy_index_time_configurations",0,app,system,"es_deployment_manager",,"ModularInput:ESDeploymentManager","ModularInput:ESDeploymentManager","_internal","/data/inputs/es_deployment_manager",,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"enforce_es_permissions",0,app,system,"app_permissions_manager",,"ModularInput:AppPermissionsManager","ModularInput:AppPermissionsManager","_internal","/data/inputs/app_permissions_manager",,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"extreme_search_contexts",0,app,system,"data_migrator",,,,main,"/data/inputs/data_migrator",,,,,
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"ransomware_tracker",1,app,system,threatlist,"Blocked domains that could host ransomware.","ModularInput:Threatlist","ModularInput:Threatlist","_internal","/data/inputs/threatlist",,,,,43200
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"update_es",0,app,system,"app_imports_update",,,,main,"/data/inputs/app_imports_update",,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"update_es_da",0,app,system,"app_imports_update",,,,main,"/data/inputs/app_imports_update",,,,,""
+UC,"PROD-UC-1|search_head",SplunkEnterpriseSecuritySuite,"update_es_main",0,app,system,"app_imports_update",,,,main,"/data/inputs/app_imports_update",,,,,""
+UC,"PROD-UC-1|search_head","Splunk_DA-ESS_PCICompliance","confcheck_pci_roles",1,app,system,"configuration_check",,,,main,"/data/inputs/configuration_check",,,,,3600
+UC,"PROD-UC-1|search_head","Splunk_DA-ESS_PCICompliance","enforce_pci_permissions",0,app,system,"app_permissions_manager",,"ModularInput:AppPermissionsManager","ModularInput:AppPermissionsManager","_internal","/data/inputs/app_permissions_manager",,,,,""
+UC,"PROD-UC-1|search_head","Splunk_Essentials_Predictive_Maintenance_for_IOT","$SPLUNK_HOME/etc/apps/Splunk_Essentials_Predictive_Maintenance_for_IOT/data/engine_failure/engine_train_D01.txt",0,app,system,monitor,,"pm_engine_d01","iot_pm_fail","iot_pm","/data/inputs/monitor",,,,,
+UC,"PROD-UC-1|search_head","Splunk_Essentials_Predictive_Maintenance_for_IOT","$SPLUNK_HOME/etc/apps/Splunk_Essentials_Predictive_Maintenance_for_IOT/data/engine_failure/engine_train_D02.txt",0,app,system,monitor,,"pm_engine_d02","iot_pm_fail","iot_pm","/data/inputs/monitor",,,,,
+UC,"PROD-UC-1|search_head","Splunk_Essentials_Predictive_Maintenance_for_IOT","/opt/data/aps_failure/aps_failure_training_set.csv",0,app,system,monitor,,,"pm_aps_fail","iot_pm","/data/inputs/monitor",,,,,
+UC,"PROD-UC-1|search_head","Splunk_Essentials_Predictive_Maintenance_for_IOT","/opt/data/battery_failure/data_pm_battery.csv",0,app,system,monitor,,,"pm_battery","iot_pm","/data/inputs/monitor",,,,,
+UC,"PROD-UC-1|search_head","Splunk_SA_CIM","$SPLUNK_HOME/var/spool/splunk/...stash_common_action_model",0,app,system,monitor,,,"stash_common_action_model",main,"/data/inputs/monitor",,,,"<SOURCE>",
+UC,"PROD-UC-1|search_head","Splunk_SA_CIM","$SPLUNK_HOME\var\spool\splunk\...stash_common_action_model",0,app,system,monitor,,,"stash_common_action_model",main,"/data/inputs/monitor",,,,"<SOURCE>",
+UC,"PROD-UC-1|search_head","Splunk_TA_Essentials","/opt/splunk/etc/users",0,app,system,monitor,,,csv,main,"/data/inputs/monitor",,".csv$",,,
+UC,"PROD-UC-1|search_head","Splunk_Use_Case_Arsenal","$SPLUNK_HOME/etc/apps",0,app,system,monitor,,,"splunk:essentials:json",main,"/data/inputs/monitor",,"exampleInfo.json$|usecases.json$|ShowcaseInfo.json$",,"<SOURCE>",
+UC,"PROD-UC-1|search_head","introspection_generator_addon","$SPLUNK_HOME/var/log/introspection",0,app,system,monitor,,,,"_introspection","/data/inputs/monitor",,,,,
+UC,"PROD-UC-1|search_head","introspection_generator_addon","/opt/splunk/etc/apps/introspection_generator_addon/bin/collector.path",0,app,system,script,,,"splunk_resource_usage__internal",main,"/data/inputs/script",,,,,0
+UC,"PROD-UC-1|search_head","splunk_app_addon-builder","_tab_internal_monitor_inputs_",0,app,system,"field_extraction_mi",,tabuilder,,main,"/data/inputs/field_extraction_mi",,,,,"-1"
+UC,"PROD-UC-1|search_head","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/instrumentation.py",0,app,system,script,,"instrumentation_scripted_input","splunk_telemetry_log","_telemetry","/data/inputs/script",,,,,"0 * * * *"
+UC,"PROD-UC-1|search_head","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/on_splunk_start.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+UC,"PROD-UC-1|search_head","splunk_instrumentation","$SPLUNK_HOME/etc/apps/splunk_instrumentation/bin/schedule_delete.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"0 0 * * *"
+UC,"PROD-UC-1|search_head","splunk_monitoring_console","/opt/splunk/etc/apps/splunk_monitoring_console/bin/dmc_config.py",0,app,system,script,,,,main,"/data/inputs/script",,,,,"-1"
+UC,"PROD-UC-1|search_head",system,"$SPLUNK_HOME/etc/splunk.version",0,system,system,monitor,,,"splunk_version","_internal","/data/inputs/monitor",,,,,
+UC,"PROD-UC-1|search_head",system,"$SPLUNK_HOME/var/log/splunk",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+UC,"PROD-UC-1|search_head",system,"$SPLUNK_HOME/var/log/splunk/license_usage_summary.log",0,system,system,monitor,,,,"_telemetry","/data/inputs/monitor",,,,,
+UC,"PROD-UC-1|search_head",system,"$SPLUNK_HOME/var/log/splunk/splunk_instrumentation_cloud.log*",0,system,system,monitor,,,"splunk_cloud_telemetry","_telemetry","/data/inputs/monitor",,,,,
+UC,"PROD-UC-1|search_head",system,"$SPLUNK_HOME/var/log/watchdog/watchdog.log*",0,system,system,monitor,,,,"_internal","/data/inputs/monitor",,,,,
+UC,"PROD-UC-1|search_head",system,"$SPLUNK_HOME/var/run/splunk/search_telemetry/*search_telemetry.json",0,system,system,monitor,,,"search_telemetry","_introspection","/data/inputs/monitor",,,,"<SOURCE>",
+UC,"PROD-UC-1|search_head",system,"$SPLUNK_HOME/var/spool/splunk",1,system,system,monitor,,,,main,"/data/inputs/monitor",,,,"<SOURCE>",
+UC,"PROD-UC-1|search_head",system,"$SPLUNK_HOME/var/spool/splunk/...stash_new",0,system,system,monitor,,,"stash_new",main,"/data/inputs/monitor",,,,"<SOURCE>",
+UC,"PROD-UC-1|search_head","vjm_splunk",LoadSampleData,1,app,system,"input_vjm_sample_data",,,"vj:input:sample_data","vj_ex","/data/inputs/input_vjm_sample_data",,,,,""

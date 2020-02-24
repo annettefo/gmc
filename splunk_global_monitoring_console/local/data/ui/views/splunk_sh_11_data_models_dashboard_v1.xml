@@ -1,0 +1,201 @@
+<form theme="dark">
+  <label>Splunk - SH - 11 - Data Models - Dashboard - v1</label>
+  <search id="splunk_sh_11_data_models_dashboard_v1">
+    <query>
+| inputlookup splunk_sh_rest_data_models_csv_lookup 
+| fields Splunk_Instance Splunk_Roles disabled title app author acceleration allow_old_summaries allow_skew cron_schedule earliest_time manual_rebuilds max_concurrent max_time poll_buckets_until_maxtime
+| makemv delim="|" Splunk_Roles
+| fillnull value="Undefined" Splunk_Instance Splunk_Roles disabled title app author acceleration allow_old_summaries allow_skew cron_schedule earliest_time manual_rebuilds max_concurrent max_time poll_buckets_until_maxtime 
+| search Splunk_Instance="*$Splunk_Instance$*" Splunk_Roles="*$Splunk_Roles$*" app="$app$" title="*$title$*" author="$author$" acceleration="$acceleration$"
+      </query>
+  </search>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="dropdown" token="Splunk_Roles" searchWhenChanged="true">
+      <label>Splunk Roles</label>
+      <fieldForLabel>Splunk_Roles</fieldForLabel>
+      <fieldForValue>Splunk_Roles</fieldForValue>
+      <search base="splunk_sh_11_data_models_dashboard_v1">
+        <query>| stats count by Splunk_Roles</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="Splunk_Instance" searchWhenChanged="true">
+      <label>Splunk Instance</label>
+      <fieldForLabel>Splunk_Instance</fieldForLabel>
+      <fieldForValue>Splunk_Instance</fieldForValue>
+      <search base="splunk_sh_11_data_models_dashboard_v1">
+        <query>| stats count by Splunk_Instance</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="app" searchWhenChanged="true">
+      <label>App</label>
+      <fieldForLabel>app</fieldForLabel>
+      <fieldForValue>app</fieldForValue>
+      <search base="splunk_sh_11_data_models_dashboard_v1">
+        <query>| stats count by app</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="acceleration" searchWhenChanged="true">
+      <label>Accelerated</label>
+      <fieldForLabel>acceleration</fieldForLabel>
+      <fieldForValue>acceleration</fieldForValue>
+      <choice value="*">All</choice>
+      <choice value="1">Yes</choice>
+      <choice value="0">No</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="title" searchWhenChanged="true">
+      <label>Data Model Name</label>
+      <fieldForLabel>title</fieldForLabel>
+      <fieldForValue>title</fieldForValue>
+      <search base="splunk_sh_11_data_models_dashboard_v1">
+        <query>| stats count by title</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="author" searchWhenChanged="true">
+      <label>Owner</label>
+      <fieldForLabel>author</fieldForLabel>
+      <fieldForValue>author</fieldForValue>
+      <search base="splunk_sh_11_data_models_dashboard_v1">
+        <query>| stats count by author</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="Splunk_Roles" searchWhenChanged="true">
+      <label>Splunk Roles (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="Splunk_Instance" searchWhenChanged="true">
+      <label>Splunk Instance (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="title" searchWhenChanged="true">
+      <label>Data Model Name (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Total Number of Data Models</title>
+      <single>
+        <search base="splunk_sh_11_data_models_dashboard_v1">
+          <query>| stats count</query>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0xf8be34"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <title>By App</title>
+      <chart>
+        <search base="splunk_sh_11_data_models_dashboard_v1">
+          <query>| stats count by app</query>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Data Models</title>
+      <table>
+        <search base="splunk_sh_11_data_models_dashboard_v1">
+          <query>| table Splunk_Instance app title disabled acceleration allow_old_summaries allow_skew cron_schedule earliest_time manual_rebuilds max_concurrent max_time poll_buckets_until_maxtime  
+| sort 0 Splunk_Instance app title 
+| rename Splunk_Roles AS "Splunk Roles" , app AS App , sharing AS "App Sharing" , author AS Owner , title AS "Data Model" , disabled AS Disabled acceleration AS Accelerated manual_rebuilds AS "Manual Rebuilds" max_concurrent AS "Maximum Concurrent Summarization Searches" max_time AS "Custom Max Time" poll_buckets_until_maxtime AS "Poll Buckets For Data To Summarize" earliest_time AS "Summary Range" cron_schedule AS "Summarization Period" allow_skew AS "Allow Skew" allow_old_summaries AS "Allow Old Summaries"</query>
+        </search>
+        <option name="count">20</option>
+        <option name="drilldown">none</option>
+        <option name="rowNumbers">true</option>
+        <option name="wrap">false</option>
+        <format type="color" field="Splunk_Instance">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Splunk Roles">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Data Model">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="App">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Owner">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Disabled">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Accelerate">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Allow Old Summaries">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Allow Skew">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Summarization Period">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Summary Range">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Manual Rebuilds">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Maximum Concurrent Summarization Searches">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Custom Max Time">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Poll Buckets For Data To Summarize">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Accelerated">
+          <colorPalette type="map">{"0":#53A051,"1":#DC4E41}</colorPalette>
+        </format>
+      </table>
+    </panel>
+  </row>
+</form>

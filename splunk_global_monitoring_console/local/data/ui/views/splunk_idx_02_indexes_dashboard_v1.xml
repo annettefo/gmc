@@ -1,0 +1,255 @@
+<form theme="dark">
+  <label>Splunk - IDX - 02 - Indexes - Dashboard - v1</label>
+  <search id="splunk_idx_02_indexes_dashboard_v1">
+    <query>
+| inputlookup splunk_sh_rest_data_indexes_csv_lookup
+
+| fields cluster_label Splunk_Roles Splunk_Instance title app coldPath coldPath.maxDataSizeMB coldToFrozenDir coldToFrozenScript currentDBSizeMB datamodel_summary_size datatype frozenTimePeriodInSecs homePath homePath.maxDataSizeMB isInternal maxDataSize maxGlobalDataSizeMB maxGlobalRawDataSizeMB maxHotBuckets maxHotIdleSecs maxHotSpanSecs maxTime maxTotalDataSizeMB maxWarmDBCount minHotIdleSecsBeforeForceRoll minTime quarantineFutureSecs quarantinePastSecs repFactor rotatePeriodInSecs thawedPath throttleCheckPeriod totalEventCount total_bucket_count total_capacity total_raw_size tstatsHomePath
+
+| makemv delim="|" Splunk_Roles | makemv delim="|" Splunk_Instance
+
+| eval Retention_Days = round(frozenTimePeriodInSecs/24/60/60), Retention_Month = round(frozenTimePeriodInSecs/24/60/60/30), Retention_Years = round(frozenTimePeriodInSecs/24/60/60/365, 2), Hot_Warm_Bucket_Retention_Days = round(maxHotSpanSecs/24/60/60) 
+
+| eval "Quarantine Past Days" = round(quarantinePastSecs/24/60/60), "Quarantine Future Days" = round(quarantineFutureSecs/24/60/60) 
+
+| eval "Index Size (GB)" = round(currentDBSizeMB / 1024, 2), "Index Size (TB)" = round(currentDBSizeMB / 1024 / 1024, 2) , "Max Total Index Size (TB)" = round(maxTotalDataSizeMB / 1024 / 1024) , "Max Total Index Size (PB)" = round(maxTotalDataSizeMB / 1024 / 1024 / 1024) 
+
+| eval "Earliest Event"=strftime(strptime(minTime,"%Y-%m-%dT%H:%M:%S"),"%B %e, %Y"), "Latest Event"=strftime(strptime(maxTime,"%Y-%m-%dT%H:%M:%S"),"%B %e, %Y") 
+
+| eval Time_Diff_Years = round((strptime(maxTime,"%Y-%m-%dT%H:%M:%S") - strptime(minTime,"%Y-%m-%dT%H:%M:%S")) / 60 / 60 / 24 / 365, 2), Time_Diff_Month = round((strptime(maxTime,"%Y-%m-%dT%H:%M:%S") - strptime(minTime,"%Y-%m-%dT%H:%M:%S")) / 60 / 60 / 24 / 30, 2), Time_Diff_Days = round((strptime(maxTime,"%Y-%m-%dT%H:%M:%S") - strptime(minTime,"%Y-%m-%dT%H:%M:%S")) / 60 / 60 / 24) 
+
+| eval Days_Diff_From_Retention = Time_Diff_Days - Retention_Days 
+
+| search Splunk_Roles="*$Splunk_Roles$*" app="$app$" isInternal="$isInternal$" currentDBSizeMB &gt;= "$currentDBSizeMB$"
+
+
+      </query>
+  </search>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="dropdown" token="cluster_label" searchWhenChanged="true">
+      <label>Cluster</label>
+      <fieldForLabel>cluster_label</fieldForLabel>
+      <fieldForValue>cluster_label</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by cluster_label</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="Splunk_Roles" searchWhenChanged="true">
+      <label>Splunk Roles</label>
+      <fieldForLabel>Splunk_Roles</fieldForLabel>
+      <fieldForValue>Splunk_Roles</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by Splunk_Roles</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="app" searchWhenChanged="true">
+      <label>App</label>
+      <fieldForLabel>app</fieldForLabel>
+      <fieldForValue>app</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by app</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="title" searchWhenChanged="true">
+      <label>Index Name</label>
+      <fieldForLabel>title</fieldForLabel>
+      <fieldForValue>title</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by title</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="datatype" searchWhenChanged="true">
+      <label>Datatype</label>
+      <fieldForLabel>datatype</fieldForLabel>
+      <fieldForValue>datatype</fieldForValue>
+      <choice value="*">All</choice>
+      <choice value="event">Event</choice>
+      <choice value="metric">Metric</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="isInternal" searchWhenChanged="true">
+      <label>IS Internal?</label>
+      <fieldForLabel>isInternal</fieldForLabel>
+      <fieldForValue>isInternal</fieldForValue>
+      <choice value="*">All</choice>
+      <choice value="1">Yes</choice>
+      <choice value="0">No</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="Retention_Days" searchWhenChanged="true">
+      <label>Retention In Days</label>
+      <fieldForLabel>Retention_Days</fieldForLabel>
+      <fieldForValue>Retention_Days</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by Retention_Days
+| sort Retention_Days</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="maxDataSize" searchWhenChanged="true">
+      <label>Max Size of Hot/Warm/Cold Bucket (maxDataSize)</label>
+      <fieldForLabel>maxDataSize</fieldForLabel>
+      <fieldForValue>maxDataSize</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by maxDataSize</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="homePath" searchWhenChanged="true">
+      <label>Home Path (Hot/Warm Volume i.e. homePath)</label>
+      <fieldForLabel>homePath</fieldForLabel>
+      <fieldForValue>homePath</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by homePath</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="coldPath" searchWhenChanged="true">
+      <label>Cold Path  (Cold Volume i.e. coldPath)</label>
+      <fieldForLabel>coldPath</fieldForLabel>
+      <fieldForValue>coldPath</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by coldPath</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="coldToFrozenDir" searchWhenChanged="true">
+      <label>Frozen Path (Archiving i.e. coldToFrozenDir)</label>
+      <fieldForLabel>coldToFrozenDir</fieldForLabel>
+      <fieldForValue>coldToFrozenDir</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by coldToFrozenDir</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="thawedPath" searchWhenChanged="true">
+      <label>Thawed Path (thawedPath)</label>
+      <fieldForLabel>thawedPath</fieldForLabel>
+      <fieldForValue>thawedPath</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by thawedPath</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="tstatsHomePath" searchWhenChanged="true">
+      <label>Data Model Acceleration TSIDX (tstatsHomePath)</label>
+      <fieldForLabel>tstatsHomePath</fieldForLabel>
+      <fieldForValue>tstatsHomePath</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by tstatsHomePath</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="Splunk_Roles" searchWhenChanged="true">
+      <label>Splunk Roles (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="Index" searchWhenChanged="true">
+      <label>Indexes Name (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="currentDBSizeMB" searchWhenChanged="true">
+      <label>Indexes currentDBSizeMB (Contains)</label>
+      <default>0</default>
+      <initialValue>0</initialValue>
+    </input>
+    <input type="text" token="Index" searchWhenChanged="true">
+      <label>Indexes Name (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="Index" searchWhenChanged="true">
+      <label>Indexes Name (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Total Number of Indexes</title>
+      <single>
+        <search base="splunk_idx_02_indexes_dashboard_v1">
+          <query>| stats count</query>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x006d9c","0x006d9c"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Splunk_Roles</title>
+      <chart>
+        <search base="splunk_idx_02_indexes_dashboard_v1">
+          <query>| stats count by Splunk_Roles</query>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Total Number of Indexes</title>
+      <chart>
+        <search base="splunk_idx_02_indexes_dashboard_v1">
+          <query>| stats count by datatype</query>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Indexes</title>
+      <table>
+        <search base="splunk_idx_02_indexes_dashboard_v1">
+          <query>| table cluster_label Splunk_Roles Splunk_Instance title datatype app currentDBSizeMB "Index Size (GB)" "Index Size (TB)" "Average Event Count" datamodel_summary_size Retention_Days Retention_Month Retention_Years "Earliest Event" "Latest Event" Time_Diff_Days Time_Diff_Month Time_Diff_Years Days_Diff_From_Retention homePath coldPath coldToFrozenDir maxDataSize maxGlobalDataSizeMB maxGlobalRawDataSizeMB maxHotBuckets maxHotIdleSecs maxWarmDBCount minHotIdleSecsBeforeForceRoll repFactor rotatePeriodInSecs thawedPath throttleCheckPeriod total_bucket_count total_capacity total_event_count total_raw_size total_size tstatsHomePath 
+    frozenTimePeriodInSecs maxHotSpanSecs maxTime maxTotalDataSizeMB minTime quarantineFutureSecs quarantinePastSecs 
+| rename currentDBSizeMB AS "Index Size (MB)" app AS App datatype AS "Data Type" datamodel_summary_size AS "Data Model Summary Size" cluster_label AS Cluster</query>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">true</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">false</option>
+      </table>
+    </panel>
+  </row>
+</form>

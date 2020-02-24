@@ -1,0 +1,176 @@
+<form theme="dark">
+  <label>Splunk - SH - 12 - Field Aliases - Dashboard - v1</label>
+  <search id="splunk_sh_12_field_aliases_dashboard_v1">
+    <query>
+| inputlookup splunk_sh_rest_data_props_fieldaliases_csv_lookup 
+| fields Splunk_Instance Splunk_Roles app author stanza attribute value sharing updated
+| makemv delim="|" Splunk_Roles
+| rex field=attribute mode=sed "s/FIELDALIAS-//g"
+| fillnull value="Undefined" Splunk_Instance Splunk_Roles app author stanza attribute value sharing updated
+| search Splunk_Instance="*$Splunk_Instance$*" Splunk_Roles="*$Splunk_Roles$*" app="$app$" author="$author$" attribute="*$attribute$*" stanza="$stanza$"
+      </query>
+  </search>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="dropdown" token="Splunk_Roles" searchWhenChanged="true">
+      <label>Splunk Roles</label>
+      <fieldForLabel>Splunk_Roles</fieldForLabel>
+      <fieldForValue>Splunk_Roles</fieldForValue>
+      <search base="splunk_sh_12_field_aliases_dashboard_v1">
+        <query>| stats count by Splunk_Roles</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="Splunk_Instance" searchWhenChanged="true">
+      <label>Splunk Instance</label>
+      <fieldForLabel>Splunk_Instance</fieldForLabel>
+      <fieldForValue>Splunk_Instance</fieldForValue>
+      <search base="splunk_sh_12_field_aliases_dashboard_v1">
+        <query>| stats count by Splunk_Instance</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="app" searchWhenChanged="true">
+      <label>App</label>
+      <fieldForLabel>app</fieldForLabel>
+      <fieldForValue>app</fieldForValue>
+      <search base="splunk_sh_12_field_aliases_dashboard_v1">
+        <query>| stats count by app</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="stanza" searchWhenChanged="true">
+      <label>Source Type</label>
+      <fieldForLabel>stanza</fieldForLabel>
+      <fieldForValue>stanza</fieldForValue>
+      <search base="splunk_sh_12_field_aliases_dashboard_v1">
+        <query>| stats count by stanza</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="attribute" searchWhenChanged="true">
+      <label>Field Alias Name</label>
+      <fieldForLabel>attribute</fieldForLabel>
+      <fieldForValue>attribute</fieldForValue>
+      <search base="splunk_sh_12_field_aliases_dashboard_v1">
+        <query>| stats count by attribute</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="author" searchWhenChanged="true">
+      <label>Owner</label>
+      <fieldForLabel>author</fieldForLabel>
+      <fieldForValue>author</fieldForValue>
+      <search base="splunk_sh_12_field_aliases_dashboard_v1">
+        <query>| stats count by author</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="Splunk_Roles" searchWhenChanged="true">
+      <label>Splunk Roles (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="Splunk_Instance" searchWhenChanged="true">
+      <label>Splunk Instance (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="attribute" searchWhenChanged="true">
+      <label>Field Aliase Name (Contains)</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Total Number of Field Aliases</title>
+      <single>
+        <search base="splunk_sh_12_field_aliases_dashboard_v1">
+          <query>| stats count</query>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x53a051"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <title>By App</title>
+      <chart>
+        <search base="splunk_sh_12_field_aliases_dashboard_v1">
+          <query>| stats count by app</query>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Field Aliases</title>
+      <table>
+        <search base="splunk_sh_12_field_aliases_dashboard_v1">
+          <query>| table Splunk_Instance app stanza attribute value author sharing 
+| sort 0 Splunk_Instance app stanza attribute 
+| rename Splunk_Roles AS "Splunk Roles" , app AS App , sharing AS "App Sharing" , author AS Owner , attribute AS "Field Alias" , stanza AS "Source Type" , value AS Value</query>
+        </search>
+        <option name="count">20</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">true</option>
+        <option name="wrap">false</option>
+        <format type="color" field="Splunk_Instance">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Splunk Roles">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="App">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Field Alias">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Source Type">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="App Sharing">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Owner">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="value">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Value">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+      </table>
+    </panel>
+  </row>
+</form>

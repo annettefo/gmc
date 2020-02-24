@@ -1,0 +1,4 @@
+"splunk_server","master_uri","cluster_label","forwarderdata_rcv_port"
+IDX1,"https://10.0.1.30:8089","org_idx_cluster1",9997
+IDX2,"https://10.0.1.30:8089","org_idx_cluster1",9997
+IDX3,"https://10.0.1.30:8089","org_idx_cluster1",9997
