@@ -12,16 +12,19 @@
 
 | eval "Quarantine Past Days" = round(quarantinePastSecs/24/60/60), "Quarantine Future Days" = round(quarantineFutureSecs/24/60/60) 
 
-| eval "Index Size (GB)" = round(currentDBSizeMB / 1024, 2), "Index Size (TB)" = round(currentDBSizeMB / 1024 / 1024, 2) , "Max Total Index Size (TB)" = round(maxTotalDataSizeMB / 1024 / 1024) , "Max Total Index Size (PB)" = round(maxTotalDataSizeMB / 1024 / 1024 / 1024) 
+| eval currentDBSizeGB = round(currentDBSizeMB / 1024, 2), currentDBSizeTB = round(currentDBSizeMB / 1024 / 1024, 2)
 
 | eval "Earliest Event"=strftime(strptime(minTime,"%Y-%m-%dT%H:%M:%S"),"%B %e, %Y"), "Latest Event"=strftime(strptime(maxTime,"%Y-%m-%dT%H:%M:%S"),"%B %e, %Y") 
 
 | eval Time_Diff_Years = round((strptime(maxTime,"%Y-%m-%dT%H:%M:%S") - strptime(minTime,"%Y-%m-%dT%H:%M:%S")) / 60 / 60 / 24 / 365, 2), Time_Diff_Month = round((strptime(maxTime,"%Y-%m-%dT%H:%M:%S") - strptime(minTime,"%Y-%m-%dT%H:%M:%S")) / 60 / 60 / 24 / 30, 2), Time_Diff_Days = round((strptime(maxTime,"%Y-%m-%dT%H:%M:%S") - strptime(minTime,"%Y-%m-%dT%H:%M:%S")) / 60 / 60 / 24) 
 
-| eval Days_Diff_From_Retention = Time_Diff_Days - Retention_Days 
+| rex field=homePath "volume:(?&lt;HotWarm_Volume&gt;\w+)" | rex field=coldPath "volume:(?&lt;Cold_Volume&gt;\w+)" | rex field=tstatsHomePath "volume:(?&lt;DM_Volume&gt;\w+)"
 
-| search Splunk_Roles="*$Splunk_Roles$*" app="$app$" isInternal="$isInternal$" currentDBSizeMB &gt;= "$currentDBSizeMB$"
+| eval Days_Diff_From_Retention = Time_Diff_Days - Retention_Days , coldToFrozenDir=if(isnull(coldToFrozenDir) OR coldToFrozenDir="", "undefined", coldToFrozenDir)
 
+| fillnull value="undefined" 
+
+| search cluster_label="$cluster_label$" Splunk_Roles="*$Splunk_Roles$*" app="$app$" title="*$title$*" isInternal="$isInternal$" currentDBSizeMB &gt;= "$currentDBSizeMB$" homePath="*$homePath$*" coldPath="*$coldPath$*" coldToFrozenDir="$coldToFrozenDir$" datatype="$datatype$" HotWarm_Volume="$HotWarm_Volume$" Cold_Volume="$Cold_Volume$" DM_Volume="$DM_Volume$" Retention_Days="$Retention_Days$" maxDataSize="$maxDataSize$" coldToFrozenDir="$coldToFrozenDir$" thawedPath="$thawedPath$"tstatsHomePath="$tstatsHomePath$"
 
       </query>
   </search>
@@ -113,12 +116,34 @@
       <default>*</default>
       <initialValue>*</initialValue>
     </input>
+    <input type="dropdown" token="HotWarm_Volume" searchWhenChanged="true">
+      <label>Hot/Warm Volume</label>
+      <fieldForLabel>HotWarm_Volume</fieldForLabel>
+      <fieldForValue>HotWarm_Volume</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by HotWarm_Volume</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
     <input type="dropdown" token="homePath" searchWhenChanged="true">
       <label>Home Path (Hot/Warm Volume i.e. homePath)</label>
       <fieldForLabel>homePath</fieldForLabel>
       <fieldForValue>homePath</fieldForValue>
       <search base="splunk_idx_02_indexes_dashboard_v1">
         <query>| stats count by homePath</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="Cold_Volume" searchWhenChanged="true">
+      <label>Cold Volume</label>
+      <fieldForLabel>Cold_Volume</fieldForLabel>
+      <fieldForValue>Cold_Volume</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by Cold_Volume</query>
       </search>
       <choice value="*">All</choice>
       <default>*</default>
@@ -168,6 +193,17 @@
       <default>*</default>
       <initialValue>*</initialValue>
     </input>
+    <input type="dropdown" token="DM_Volume" searchWhenChanged="true">
+      <label>Data Model Volume</label>
+      <fieldForLabel>DM_Volume</fieldForLabel>
+      <fieldForValue>DM_Volume</fieldForValue>
+      <search base="splunk_idx_02_indexes_dashboard_v1">
+        <query>| stats count by DM_Volume</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
     <input type="text" token="Splunk_Roles" searchWhenChanged="true">
       <label>Splunk Roles (Contains)</label>
       <default>*</default>
@@ -182,16 +218,6 @@
       <label>Indexes currentDBSizeMB (Contains)</label>
       <default>0</default>
       <initialValue>0</initialValue>
-    </input>
-    <input type="text" token="Index" searchWhenChanged="true">
-      <label>Indexes Name (Contains)</label>
-      <default>*</default>
-      <initialValue>*</initialValue>
-    </input>
-    <input type="text" token="Index" searchWhenChanged="true">
-      <label>Indexes Name (Contains)</label>
-      <default>*</default>
-      <initialValue>*</initialValue>
     </input>
   </fieldset>
   <row>
@@ -210,7 +236,7 @@
       </single>
     </panel>
     <panel>
-      <title>Splunk_Roles</title>
+      <title>By Splunk Roles</title>
       <chart>
         <search base="splunk_idx_02_indexes_dashboard_v1">
           <query>| stats count by Splunk_Roles</query>
@@ -221,10 +247,44 @@
       </chart>
     </panel>
     <panel>
-      <title>Total Number of Indexes</title>
+      <title>By Index Data Type</title>
       <chart>
         <search base="splunk_idx_02_indexes_dashboard_v1">
           <query>| stats count by datatype</query>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>By Retention IN Days</title>
+      <chart>
+        <search base="splunk_idx_02_indexes_dashboard_v1">
+          <query>| stats count by Retention_Days</query>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>By Hot/Warm Volume</title>
+      <chart>
+        <search base="splunk_idx_02_indexes_dashboard_v1">
+          <query>| stats count by HotWarm_Volume</query>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>By Cold Volume</title>
+      <chart>
+        <search base="splunk_idx_02_indexes_dashboard_v1">
+          <query>| stats count by Cold_Volume</query>
         </search>
         <option name="charting.chart">pie</option>
         <option name="charting.drilldown">none</option>
@@ -237,9 +297,8 @@
       <title>Indexes</title>
       <table>
         <search base="splunk_idx_02_indexes_dashboard_v1">
-          <query>| table cluster_label Splunk_Roles Splunk_Instance title datatype app currentDBSizeMB "Index Size (GB)" "Index Size (TB)" "Average Event Count" datamodel_summary_size Retention_Days Retention_Month Retention_Years "Earliest Event" "Latest Event" Time_Diff_Days Time_Diff_Month Time_Diff_Years Days_Diff_From_Retention homePath coldPath coldToFrozenDir maxDataSize maxGlobalDataSizeMB maxGlobalRawDataSizeMB maxHotBuckets maxHotIdleSecs maxWarmDBCount minHotIdleSecsBeforeForceRoll repFactor rotatePeriodInSecs thawedPath throttleCheckPeriod total_bucket_count total_capacity total_event_count total_raw_size total_size tstatsHomePath 
-    frozenTimePeriodInSecs maxHotSpanSecs maxTime maxTotalDataSizeMB minTime quarantineFutureSecs quarantinePastSecs 
-| rename currentDBSizeMB AS "Index Size (MB)" app AS App datatype AS "Data Type" datamodel_summary_size AS "Data Model Summary Size" cluster_label AS Cluster</query>
+          <query>| table cluster_label Splunk_Roles title HotWarm_Volume Cold_Volume datatype app currentDBSizeMB currentDBSizeGB currentDBSizeTB total_bucket_count totalEventCount datamodel_summary_size Retention_Days Retention_Month Retention_Years "Earliest Event" "Latest Event" Time_Diff_Days Time_Diff_Month Time_Diff_Years Days_Diff_From_Retention maxDataSize maxHotBuckets maxWarmDBCount 
+| rename currentDBSizeMB AS "Index Size (MB)" currentDBSizeGB AS "Index Size (GB)" currentDBSizeTB AS "Index Size (TB)" app AS App datatype AS "Data Type" datamodel_summary_size AS "Data Model Summary Size" cluster_label AS "Indexer Cluster" Splunk_Roles AS "Splunk Roles" title AS Index Retention_Days AS "Retention IN Days" Retention_Month AS "Retention IN Month" Retention_Years AS "Retention IN Years" maxDataSize AS "Max Size of Hot/Warm/Cold Buckets" HotWarm_Volume AS "Hot/Warm Volume" Cold_Volume AS "Cold Volume" Time_Diff_Days AS "Time Diff IN Days" Time_Diff_Month AS "Time Diff IN Month" Time_Diff_Years AS "Time Diff IN Years" Days_Diff_From_Retention AS "Days Diff From Retention" maxDataSize AS "maxDataSize" maxHotBuckets AS "Max Hot Buckets" maxWarmDBCount AS "Max Warm DB Count" total_bucket_count AS "Average Bucket Count" totalEventCount AS "Average Event Count"</query>
         </search>
         <option name="count">20</option>
         <option name="dataOverlayMode">none</option>
@@ -249,6 +308,172 @@
         <option name="rowNumbers">true</option>
         <option name="totalsRow">false</option>
         <option name="wrap">false</option>
+        <format type="color" field="Indexer Cluster">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Splunk Roles">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Index">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Data Type">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="number" field="Data Model Summary Size">
+          <option name="unit">MB</option>
+        </format>
+        <format type="color" field="Retention IN Days">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="color" field="App">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="number" field="Retention IN Month">
+          <option name="unit">Month</option>
+        </format>
+        <format type="color" field="Retention IN Month">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="number" field="Retention IN Years">
+          <option name="unit">Years</option>
+        </format>
+        <format type="color" field="Retention IN Years">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="color" field="Earliest Event">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Latest Event">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Max Size of Hot/Warm/Cold Buckets">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Hot/Warm Volume">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Cold Volume">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="number" field="Time Diff IN Years">
+          <option name="unit">Years</option>
+        </format>
+        <format type="number" field="Days Diff From Retention">
+          <option name="precision">0</option>
+          <option name="unit">Days</option>
+        </format>
+        <format type="number" field="Buckets">
+          <option name="precision">0</option>
+        </format>
+        <format type="color" field="Buckets">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="color" field="Max Warm DB Count">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="number" field="Max Warm DB Count">
+          <option name="precision">0</option>
+          <option name="unit">Buckets</option>
+        </format>
+        <format type="number" field="Average Event Count">
+          <option name="precision">0</option>
+          <option name="unit">Events</option>
+        </format>
+        <format type="color" field="Average Event Count">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="number" field="Retention IN Days">
+          <option name="precision">0</option>
+          <option name="unit">Days</option>
+        </format>
+        <format type="number" field="Average Bucket Count">
+          <option name="precision">0</option>
+          <option name="unit">Buckets</option>
+        </format>
+        <format type="color" field="Average Bucket Count">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="color" field="Index Size (MB)">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="number" field="Index Size (MB)">
+          <option name="unit">MB</option>
+        </format>
+        <format type="color" field="Index Size (MB)">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="number" field="Index Size (MB)">
+          <option name="unit">MB</option>
+        </format>
+        <format type="color" field="Index Size (GB)">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="number" field="Index Size (GB)">
+          <option name="unit">GB</option>
+        </format>
+        <format type="color" field="Index Size (TB)">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="number" field="Index Size (TB)">
+          <option name="precision">3</option>
+          <option name="unit">TB</option>
+        </format>
+        <format type="color" field="Data Model Summary Size">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="color" field="Max Hot Buckets">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="number" field="Max Hot Buckets">
+          <option name="precision">0</option>
+          <option name="unit">Buckets</option>
+        </format>
+        <format type="color" field="Days Diff From Retention">
+          <colorPalette type="minMidMax" maxColor="#53A051" midColor="#F8BE34" minColor="#DC4E41"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="color" field="Time Diff IN Years">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="color" field="Time Diff IN Days">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="number" field="Time Diff IN Days">
+          <option name="unit">Days</option>
+        </format>
+        <format type="color" field="Time Diff IN Month">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="number" field="Time Diff IN Month">
+          <option name="unit">Month</option>
+        </format>
       </table>
     </panel>
   </row>
