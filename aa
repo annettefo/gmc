@@ -1,4 +1,0 @@
-
-[default]
-#LOOKUP-zv-asset_lookup_by_cidr = asset_lookup_by_cidr cidr AS host OUTPUTNEW data_center AS data_center pool_name AS pool_name
-#LOOKUP-zu-asset_lookup_by_str = asset_lookup_by_str ip AS host OUTPUTNEW data_center AS data_center pool_name AS pool_name
