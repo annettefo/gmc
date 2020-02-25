@@ -1,5 +1,6 @@
 <form theme="dark">
   <label>Splunk - IDX - 01 - Data Quality - Dashboard - v1</label>
+  <description>Source Type Data Quality issues &amp; All Source Type definitions</description>
   <search id="splunk_idx_01_data_quality_dashboard_v1">
     <query>
 index=_internal sourcetype=splunkd log_level IN (WARN,ERROR) component IN (AggregatorMiningProcessor, DateParserVerbose, LineBreakingProcessor) 
@@ -74,10 +75,10 @@ index=_internal sourcetype=splunkd log_level IN (WARN,ERROR) component IN (Aggre
   <row id="style_settings" depends="$visible$">
     <panel depends="$alwaysHideCSS$">
       <html>
-         <style>
-           <!--.dashboard-body {-->
-           <!--    background: #a6a6a6 !important;-->
-           <!--}-->
+                <style>
+                    <!--.dashboard-body {-->
+                    <!--    background: #a6a6a6 !important;-->
+                    <!--}-->
            .dashboard-panel h2{
              background:#FFA500 !important;
              color:black !important;
@@ -91,8 +92,9 @@ index=_internal sourcetype=splunkd log_level IN (WARN,ERROR) component IN (Aggre
                 .table, th, td {
               border: 8px solid black !important; }
             { display: none;  }
-         </style>
-       </html>
+         
+                </style>
+            </html>
     </panel>
   </row>
   <row>
@@ -149,7 +151,7 @@ index=_internal sourcetype=splunkd log_level IN (WARN,ERROR) component IN (Aggre
       <title>Source Type Definition</title>
       <table>
         <search>
-          <query>| inputlookup splunk_sh_configs_conf_props_rest_csv_lookup where title = "$Sourcetype$" 
+          <query>| inputlookup splunk_rest_configs_conf_props_sh_csv_lookup where title = "$Sourcetype$" 
 | rename title as Sourcetype 
 | makemv delim="|" Splunk_Roles 
 | search Splunk_Roles="$Splunk_Roles$" Splunk_Instance="$Splunk_Instance$" 

@@ -1,51 +1,65 @@
 <nav search_view="search" color="#FFA500">
-	<view name="home"/>
-	<view name="search" default='true' />
-	
-  <collection label="Reports">
-		<view name="reports" />
-		<collection label="KV Store Lookup Gen Jobs">
-			<saved source="all" match="_kv_store_lookup_gen"/>
-		</collection>
-      	<collection label="CSV Lookup Gen Jobs">
-			<saved source="all" match="_csv_lookup_gen"/>
-		</collection>
-		<collection label="KV Store Lookup Tracker Jobs">
-			<saved source="all" match="_tracker"/>
-		</collection>
-      	<collection label="Lookup Reports">
-			<saved source="all" match="_report"/>
-		</collection>
-		<collection label="All Reports">
-			<saved source="all" />
-		</collection>
-	</collection>
-	
-  <collection label="Dashboards">
-		<view name="dashboards" />
-		<collection label="Search Head Tier">
-			<view source="all" match="splunk_sh"/>
-		</collection>
-		<collection label="Indexer Tier">
-			<view source="all" match="splunk_idx"/>
-		</collection>
-		<collection label="Forwarder Tier">
-			<view source="all" match="splunk_uf"/>
-		</collection>
-		<collection label="All Dashboards">
-			<view source="unclassified" />
-		</collection>
-		</collection>
-	
-  <collection label="Splunk">
-		<view name="alerts" />
-		<view name="analysis_workspace" />
-		<view name="data_models" />
-	
-	</collection>
-	<view name="splunk_sh_04_audit_search_activity_dashboard_v1" />
-	<view name="splunk_sh_05_audit_users_dashboard_v1" />
-	<view name="splunk_sh_02_gmc_assets_dashboard_v1" />
-	<view name="splunk_sh_01_identities_dashboard_v1" />
-	<view name="splunk_sh_03_field_help_dashboard_v1" />
+    <view name="home"/>
+    <view name="search" default='true' />
+    <collection label="Reports">
+        <view name="reports" />
+        <collection label="Lookup Gen Jobs">
+            <collection label="KV Store Lookup Gen Jobs">
+                <saved source="all" match="_kv_store_lookup_gen"/>
+            </collection>
+            <collection label="CSV Lookup Gen Jobs">
+                <collection label="All Tiers CSV Lookup Gen Jobs">
+                    <saved source="all" match="_all_csv_lookup_gen"/>
+                </collection>
+                <collection label="SH Tier CSV Lookup Gen Jobs">
+                    <saved source="all" match="_sh_csv_lookup_gen"/>
+                </collection>
+                <collection label="IDX Tier CSV Lookup Gen Jobs">
+                    <saved source="all" match="_idx_csv_lookup_gen"/>
+                </collection>
+            </collection>
+        </collection>
+        <collection label="KV Store Lookup Tracker Jobs">
+            <collection label="Users Login Tracker Job">
+                <saved source="all" match="splunk_index_audit_user_login_sh_kv_store_lookup_tracker"/>
+            </collection>
+            <collection label="Reports/Alerts Tracker Job">
+                <saved source="all" match="splunk_index_internal_scheduler_jobs_sh_kv_store_lookup_tracker"/>
+            </collection>
+            <collection label="Dashboards Tracker Job">
+                <saved source="all" match="splunk_index_internal_web_access_sh_kv_store_lookup_tracker"/>
+            </collection>
+        </collection>
+        <collection label="Lookup Reports">
+            <saved source="all" match="_report"/>
+        </collection>
+        <collection label="All Reports">
+            <saved source="all" />
+        </collection>
+    </collection>
+    <collection label="Dashboards">
+        <view name="dashboards" />
+        <collection label="Search Head Tier">
+            <view source="all" match="splunk_sh"/>
+        </collection>
+        <collection label="Indexer Tier">
+            <view source="all" match="splunk_idx"/>
+        </collection>
+        <collection label="Forwarder Tier">
+            <view source="all" match="splunk_uf"/>
+        </collection>
+        <collection label="All Dashboards">
+            <view source="unclassified" />
+        </collection>
+    </collection>
+    <collection label="Splunk">
+        <view name="alerts" />
+        <view name="analysis_workspace" />
+        <view name="data_models" />
+    </collection>
+    <view name="splunk_sh_04_audit_search_activity_dashboard_v1" />
+    <view name="splunk_sh_05_audit_users_dashboard_v1" />
+    <view name="splunk_sh_02_gmc_assets_dashboard_v1" />
+    <view name="splunk_sh_01_identities_dashboard_v1" />
+    <view name="splunk_sh_03_field_help_dashboard_v1" />
 </nav>

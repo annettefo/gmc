@@ -4,7 +4,7 @@
   <row id="style_settings" depends="$visible$">
     <panel depends="$alwaysHideCSS$">
       <html>
-         <style>
+                <style>
            .dashboard-panel h2{
              background:#FFA500 !important;
              color:black !important;
@@ -19,43 +19,46 @@
               border: 10px solid black !important; }
             { display: none;  }
          </style>
-       </html>
+            </html>
     </panel>
   </row>
   <row>
     <panel>
       <title>Welcome!</title>
       <html>
-            <div class="floatright" id="DemoModeSwitch"/>
-            <div data-translate-id="home-div-welcometext" style="max-width: 1200px">
+                <div class="floatright" id="DemoModeSwitch"/>
+                <div data-translate-id="home-div-welcometext" style="max-width: 1200px">
                Welcome $env:user_realname$ to Splunk Global Monitoring Console! Below you will find the primary areas where Splunk users get value from this app. 
                Happy Splunking!
             </div>
-         </html>
+            </html>
     </panel>
     <panel>
       <html>
-            <ul>
-              <h1>
-            <strong>The App must run on the Splunk Monitoring Console</strong>
-          </h1>  
-            <h1>
-            <strong>The Splunk Monitoring Console App (splunk_monitoring_console) must be exported globally on the Splunk Monitoring Console.  Also make the search app comment macro Global</strong>
-          </h1>
-          
-              <h1>
-            <strong>Required Splunkbase Apps:</strong>
-          </h1>
-          <h3 class="u.item:shrink">1. Splunk Common Information Model (CIM): <a href="https://splunkbase.splunk.com/app/1621">https://splunkbase.splunk.com/app/1621</a>
-          </h3>
-          <h3 class="u.item:shrink">2. Custom Cluster Map Visualization: <a href="https://splunkbase.splunk.com/app/3122">https://splunkbase.splunk.com/app/3122</a>
-          </h3>
-          <h3 class="u.item:shrink">3. Semicircle Donut Chart Visualization: <a href="https://splunkbase.splunk.com/app/4378">https://splunkbase.splunk.com/app/4378</a>
-          </h3>
-          <h3 class="u.item:shrink">4. Number Display Visualization: <a href="https://splunkbase.splunk.com/app/4537">https://splunkbase.splunk.com/app/4537</a>
-          </h3>
-            </ul>
-         </html>
+                <ul>
+                    <h1>
+                        <strong>The App must run on the Splunk Monitoring Console</strong>
+                    </h1>
+                    <h1>
+                        <strong>The Splunk Monitoring Console App (splunk_monitoring_console) must be exported globally on the Splunk Monitoring Console.  Also make the search app comment macro Global</strong>
+                    </h1>
+                    <h1>
+                        <strong>Required Splunkbase Apps:</strong>
+                    </h1>
+                    <h3 class="u.item:shrink">1. Splunk Common Information Model (CIM): 
+                        <a href="https://splunkbase.splunk.com/app/1621">https://splunkbase.splunk.com/app/1621</a>
+                    </h3>
+                    <h3 class="u.item:shrink">2. Custom Cluster Map Visualization: 
+                        <a href="https://splunkbase.splunk.com/app/3122">https://splunkbase.splunk.com/app/3122</a>
+                    </h3>
+                    <h3 class="u.item:shrink">3. Semicircle Donut Chart Visualization: 
+                        <a href="https://splunkbase.splunk.com/app/4378">https://splunkbase.splunk.com/app/4378</a>
+                    </h3>
+                    <h3 class="u.item:shrink">4. Number Display Visualization: 
+                        <a href="https://splunkbase.splunk.com/app/4537">https://splunkbase.splunk.com/app/4537</a>
+                    </h3>
+                </ul>
+            </html>
     </panel>
   </row>
   <row>
@@ -63,7 +66,7 @@
       <title>List of Macros</title>
       <table>
         <search>
-          <query>| inputlookup splunk_sh_rest_data_macros_csv_lookup where app="splunk_global_monitoring_console" 
+          <query>| inputlookup splunk_rest_data_macros_sh_csv_lookup where app="splunk_global_monitoring_console" 
 | table title description args
 | sort 0 title 
 | rename title AS "Macro Name" description AS Description args AS "Arguments"</query>
@@ -90,7 +93,7 @@
       <title>List of Jobs</title>
       <table>
         <search>
-          <query>| inputlookup splunk_sh_saved_searches_rest_kv_store_lookup where app="splunk_global_monitoring_console" 
+          <query>| inputlookup splunk_rest_saved_searches_sh_kv_store_lookup where app="splunk_global_monitoring_console" 
 | eval is_scheduled=if(is_scheduled=1, "Yes", "No")
 | table savedsearch_name description is_scheduled cron_schedule 
 | `cron_schedule(cron_schedule)` 
@@ -130,16 +133,15 @@
       <title>List of Dashboards</title>
       <table>
         <search>
-          <query>| inputlookup splunk_sh_rest_data_ui_dashboards_lookup where app="splunk_global_monitoring_console" 
+          <query>| inputlookup splunk_rest_data_ui_views_sh_kv_store_lookup where app="splunk_global_monitoring_console" 
 | table label description
 | rename label AS "Dashboard Name" description AS Description</query>
           <earliest>$earliest$</earliest>
           <latest>$latest$</latest>
         </search>
         <option name="drilldown">none</option>
-        <option name="refresh.display">progressbar</option>
         <option name="rowNumbers">true</option>
-        <option name="wrap">false</option>
+        <option name="wrap">true</option>
         <format type="color" field="Macro Name">
           <colorPalette type="sharedList"></colorPalette>
           <scale type="sharedCategory"></scale>
@@ -160,7 +162,7 @@
       <title>List of Lookups</title>
       <table>
         <search>
-          <query>| inputlookup splunk_fields_lookup where Index = "GMC Lookups" 
+          <query>| inputlookup splunk_fields_all_csv_lookup where Index = "GMC Lookups" 
 | fields Component Component Sub_Component Field_Display_Name Field_Name Field_Description 
 | rename Component AS Lookup Sub_Component AS Filename Field_Description AS Description Field_Name AS Type 
 | table Lookup Type Filename Description</query>

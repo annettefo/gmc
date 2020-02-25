@@ -1,8 +1,9 @@
 <form theme="dark">
   <label>Splunk - SH - 03 - Fields Help - Dashboard - v1</label>
+  <description>Splunk Fields explanation including a complete guide to fields under Job Inspect</description>
   <search id="Help">
     <query>
-| inputlookup splunk_fields_lookup 
+| inputlookup splunk_fields_all_csv_lookup 
 | fields Index Component Component Sub_Component Field_Display_Name Field_Name Field_Description 
 | fillnull value="Undefined" Index Component Sub_Component Field_Display_Name Field_Name Field_Description 
 | search Index IN ($Index$) Component IN ($Component$) Field_Name="*$Field_Name$*" Field_Description="*$Field_Description$*" Field_Display_Name="*$Field_Display_Name$*" Sub_Component="*$Sub_Component$*"
@@ -100,10 +101,10 @@
   <row id="style_settings" depends="$visible$">
     <panel depends="$alwaysHideCSS$">
       <html>
-         <style>
-           <!--.dashboard-body {-->
-           <!--    background: #a6a6a6 !important;-->
-           <!--}-->
+                <style>
+                    <!--.dashboard-body {-->
+                    <!--    background: #a6a6a6 !important;-->
+                    <!--}-->
            .dashboard-panel h2{
              background:#FFA500 !important;
              color:black !important;
@@ -117,8 +118,9 @@
                 .table, th, td {
               border: 8px solid black !important; }
             { display: none;  }
-         </style>
-       </html>
+         
+                </style>
+            </html>
     </panel>
   </row>
   <row>

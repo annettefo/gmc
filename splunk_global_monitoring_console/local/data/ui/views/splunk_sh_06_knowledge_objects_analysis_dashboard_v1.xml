@@ -1,8 +1,8 @@
 <form script="tabs.js" stylesheet="tabs.css" theme="dark">
   <label>Splunk - SH - 06 - Knowledge Objects Analysis - Dashboard - v1</label>
-  <search id="getDashboardListFromLookup">
+  <search id="splunk_sh_06_knowledge_objects_analysis_dashboard1">
     <query>
-| inputlookup splunk_sh_rest_data_ui_dashboards_lookup 
+| inputlookup splunk_rest_data_ui_views_sh_kv_store_lookup 
 
 | fields Splunk_Roles Splunk_Instance app sharing title label description type dashboard_size author location removable updated data Report_Reference Dashboard_Reference Lookup_Reference Datamodel_Reference Search BaseSearch 
 
@@ -20,9 +20,9 @@
 
     </query>
   </search>
-  <search id="getSavedSearchesListFromLookup">
+  <search id="splunk_sh_06_knowledge_objects_analysis_dashboard2">
     <query>
-| inputlookup splunk_sh_saved_searches_rest_kv_store_lookup 
+| inputlookup splunk_rest_saved_searches_sh_kv_store_lookup 
 
 | fields Splunk_Roles Splunk_Instance app savedsearch_name description savedsearch_type sharing author owner updated disabled is_visible is_scheduled cron_schedule scheduled_times next_scheduled_time dc_scheduled_times auto_summarize dispatch_earliest_time dispatch_latest_time schedule_priority max_concurrent schedule_window allow_skew realtime_schedule alert_severity alert_track alert_type removable run_n_times run_on_startup Lookup_Reference Datamodel_Reference search 
 
@@ -40,9 +40,9 @@
 
     </query>
   </search>
-  <search id="getLookupDefinitionsListFromLookup">
+  <search id="splunk_sh_06_knowledge_objects_analysis_dashboard3">
     <query>
-| inputlookup splunk_sh_rest_admin_transforms_lookup_csv_lookup where Type="kvstore"
+| inputlookup splunk_rest_admin_transforms_lookup_sh_csv_lookup where Type="kvstore"
 
 | fields Splunk_Roles Splunk_Instance app sharing author disabled updated Lookup Author Filename Type Collection Match_Type Replicate Allow_Caching Filter Index_Fields_List Min_Matches Max_Matches Fields_List
 
@@ -54,15 +54,15 @@
 
     </query>
   </search>
-  <search id="getLookupFilesListFromLookup">
+  <search id="splunk_sh_06_knowledge_objects_analysis_dashboard4">
     <query>
-| inputlookup splunk_sh_rest_admin_lookup_table_files_kv_store_lookup
+| inputlookup splunk_rest_admin_lookup_table_files_sh_kv_store_lookup
 
 | fields Splunk_Roles Splunk_Instance app sharing author disabled updated Lookup_File Lookup_File_Path
 
 | makemv delim="|" Splunk_Roles
 
-| lookup splunk_sh_rest_admin_transforms_lookup_csv_lookup app Filename AS Lookup_File sharing author OUTPUT Lookup Type Match_Type Min_Matches Max_Matches Fields_List 
+| lookup splunk_rest_admin_transforms_lookup_sh_csv_lookup app Filename AS Lookup_File sharing author OUTPUT Lookup Type Match_Type Min_Matches Max_Matches Fields_List 
 
 | eval Type = if(match(Lookup_File,".csv"), "file", Type) , if(isnull(Lookup_File), "file", Type) , Lookup = if(isnull(Lookup), "NO-DEFINITION", Lookup)
 
@@ -101,7 +101,7 @@
         <label>Splunk Roles</label>
         <fieldForLabel>Splunk_Role1</fieldForLabel>
         <fieldForValue>Splunk_Role1</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by Splunk_Roles
 | rename Splunk_Roles AS Splunk_Role1</query>
         </search>
@@ -113,7 +113,7 @@
         <label>Splunk Instance</label>
         <fieldForLabel>Splunk_Instance1</fieldForLabel>
         <fieldForValue>Splunk_Instance1</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by Splunk_Instance
 | rename Splunk_Instance AS Splunk_Instance1</query>
         </search>
@@ -125,7 +125,7 @@
         <label>App</label>
         <fieldForLabel>app1</fieldForLabel>
         <fieldForValue>app1</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by app | rename app as app1</query>
         </search>
         <choice value="*">All</choice>
@@ -147,7 +147,7 @@
         <label>Dashboard Name</label>
         <fieldForLabel>label</fieldForLabel>
         <fieldForValue>label</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by label</query>
         </search>
         <choice value="*">All</choice>
@@ -160,7 +160,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>title</fieldForLabel>
         <fieldForValue>title</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by title</query>
         </search>
         <default>*</default>
@@ -172,7 +172,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>author1</fieldForLabel>
         <fieldForValue>author1</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by author
 | rename author as author1</query>
         </search>
@@ -181,7 +181,7 @@
         <label>Author Status</label>
         <fieldForLabel>Emp_Status</fieldForLabel>
         <fieldForValue>Emp_Status</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by Emp_Status</query>
         </search>
         <choice value="*">All</choice>
@@ -192,7 +192,7 @@
         <label>LOB</label>
         <fieldForLabel>LOB</fieldForLabel>
         <fieldForValue>LOB</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by LOB</query>
         </search>
         <choice value="*">All</choice>
@@ -203,7 +203,7 @@
         <label>Department</label>
         <fieldForLabel>Department</fieldForLabel>
         <fieldForValue>Department</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by Department</query>
         </search>
         <choice value="*">All</choice>
@@ -217,7 +217,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>Lookup_Reference</fieldForLabel>
         <fieldForValue>Lookup_Reference</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by Lookup_Reference</query>
         </search>
       </input>
@@ -228,7 +228,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>Report_Reference</fieldForLabel>
         <fieldForValue>Report_Reference</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by Report_Reference</query>
         </search>
       </input>
@@ -239,7 +239,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>Dashboard_Reference</fieldForLabel>
         <fieldForValue>Dashboard_Reference</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by Dashboard_Reference</query>
         </search>
       </input>
@@ -250,7 +250,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>Datamodel_Reference</fieldForLabel>
         <fieldForValue>Datamodel_Reference</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by Datamodel_Reference
 | search Datamodel_Reference!="*\$*"</query>
         </search>
@@ -262,7 +262,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>BaseSearch</fieldForLabel>
         <fieldForValue>BaseSearch</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by BaseSearch</query>
         </search>
       </input>
@@ -273,7 +273,7 @@
         <initialValue>9999999</initialValue>
         <fieldForLabel>Days_Latest_Dashboard_Access</fieldForLabel>
         <fieldForValue>Days_Latest_Dashboard_Access</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by Days_Latest_Dashboard_Access
 | sort - Days_Latest_Dashboard_Access</query>
         </search>
@@ -285,7 +285,7 @@
         <initialValue>0</initialValue>
         <fieldForLabel>Days_Latest_Dashboard_Access</fieldForLabel>
         <fieldForValue>Days_Latest_Dashboard_Access</fieldForValue>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count by Days_Latest_Dashboard_Access
 | sort - Days_Latest_Dashboard_Access</query>
         </search>
@@ -310,10 +310,10 @@
   <row id="style_settings" depends="$visible$">
     <panel depends="$alwaysHideCSS$">
       <html>
-         <style>
-           <!--.dashboard-body {-->
-           <!--    background: #a6a6a6 !important;-->
-           <!--}-->
+                <style>
+                    <!--.dashboard-body {-->
+                    <!--    background: #a6a6a6 !important;-->
+                    <!--}-->
            .dashboard-panel h2{
              background:#FFA500 !important;
              color:black !important;
@@ -327,15 +327,16 @@
                 .table, th, td {
               border: 8px solid black !important; }
             { display: none;  }
-         </style>
-       </html>
+         
+                </style>
+            </html>
     </panel>
   </row>
   <row id="Dashboards_Panel1">
     <panel>
       <title>Total Number of Dashboard</title>
       <single>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count</query>
         </search>
         <option name="colorMode">block</option>
@@ -350,8 +351,8 @@
     <panel>
       <title>Number of Dashboards By Author</title>
       <table>
-        <search base="getDashboardListFromLookup">
-          <query>| stats count AS "Number of Dashboards" by author Name
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
+          <query>| stats count AS "Number of Dashboards" by author
 | sort 0 - "Number of Dashboards"</query>
         </search>
         <option name="count">5</option>
@@ -376,7 +377,7 @@
     <panel>
       <title>Number of Dashboards By LOB</title>
       <table>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| stats count AS "Number of Dashboards" by LOB 
 | sort 0 - "Number of Dashboards"</query>
         </search>
@@ -407,7 +408,7 @@
     <panel>
       <title>Dashboards List</title>
       <table>
-        <search base="getDashboardListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard1">
           <query>| eval #=1 
 | eval Search=mvdedup(mvsort(Search)) 
 | table # Splunk_Instance app sharing label title author updated Search 
@@ -474,7 +475,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>Splunk_Role2</fieldForLabel>
         <fieldForValue>Splunk_Role2</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by Splunk_Roles 
 | rename Splunk_Roles as Splunk_Role2</query>
         </search>
@@ -484,7 +485,7 @@
         <label>Splunk Instance</label>
         <fieldForLabel>Splunk_Instance2</fieldForLabel>
         <fieldForValue>Splunk_Instance2</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by Splunk_Instance
 | rename Splunk_Instance AS Splunk_Instance2</query>
         </search>
@@ -498,7 +499,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>app2</fieldForLabel>
         <fieldForValue>app2</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by app 
 | rename app as app2</query>
         </search>
@@ -510,7 +511,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>author2</fieldForLabel>
         <fieldForValue>author2</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by author 
 | rename author as author2</query>
         </search>
@@ -533,7 +534,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>savedsearch_name</fieldForLabel>
         <fieldForValue>savedsearch_name</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by savedsearch_name</query>
         </search>
         <default>*</default>
@@ -544,7 +545,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>savedsearch_type</fieldForLabel>
         <fieldForValue>savedsearch_type</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by savedsearch_type</query>
         </search>
         <default>*</default>
@@ -575,7 +576,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>Lookup_Reference2</fieldForLabel>
         <fieldForValue>Lookup_Reference2</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by Lookup_Reference 
 | rename Lookup_Reference AS Lookup_Reference2</query>
         </search>
@@ -587,7 +588,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>Datamodel_Reference2</fieldForLabel>
         <fieldForValue>Datamodel_Reference2</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by Datamodel_Reference 
 | rename Datamodel_Reference as Datamodel_Reference2</query>
         </search>
@@ -597,7 +598,7 @@
         <label>LOB</label>
         <fieldForLabel>LOB</fieldForLabel>
         <fieldForValue>LOB</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by LOB</query>
         </search>
         <choice value="*">All</choice>
@@ -608,7 +609,7 @@
         <label>Employee Status</label>
         <fieldForLabel>Emp_Status</fieldForLabel>
         <fieldForValue>Emp_Status</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by Emp_Status</query>
         </search>
         <choice value="*">All</choice>
@@ -619,7 +620,7 @@
         <label>Department</label>
         <fieldForLabel>Department</fieldForLabel>
         <fieldForValue>Department</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by Department</query>
         </search>
         <choice value="*">All</choice>
@@ -638,7 +639,7 @@
         <initialValue>9999999</initialValue>
         <fieldForLabel>Days_Latest_Access</fieldForLabel>
         <fieldForValue>Days_Latest_Access</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by Days_Latest_Access
 | sort - Days_Latest_Access</query>
         </search>
@@ -650,7 +651,7 @@
         <initialValue>0</initialValue>
         <fieldForLabel>Days_Latest_Access</fieldForLabel>
         <fieldForValue>Days_Latest_Access</fieldForValue>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by Days_Latest_Access
 | sort - Days_Latest_Access</query>
         </search>
@@ -661,7 +662,7 @@
     <panel>
       <title>Number of Reports/Alerts</title>
       <single>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count</query>
         </search>
         <option name="colorMode">block</option>
@@ -675,7 +676,7 @@
     <panel>
       <title>Reports/Alerts By Author</title>
       <table>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count AS "Number of Reports/Alerts" by author
 | sort 0 - "Number of Reports/Alerts"</query>
         </search>
@@ -698,7 +699,7 @@
     <panel>
       <title>Reports/Alerts By App</title>
       <chart>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| stats count by app</query>
         </search>
         <option name="charting.chart">pie</option>
@@ -712,7 +713,7 @@
     <panel>
       <title>List of Reports/Alerts</title>
       <table>
-        <search base="getSavedSearchesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard2">
           <query>| eval #=1 
 | table # Splunk_Instance app author sharing savedsearch_name savedsearch_type disabled is_scheduled search
 | rename updated as Last_Updated , app as App sharing as "App Sharing" , description as Description , author AS Author , Splunk_Instance AS "Splunk Instance", Splunk_Roles AS "Splunk Roles", is_scheduled AS "IS Scheduled", savedsearch_name AS Name, savedsearch_type AS Type, disabled AS "IS Disabled"</query>
@@ -775,7 +776,7 @@
         <label>Search Role</label>
         <fieldForLabel>Splunk_Role3</fieldForLabel>
         <fieldForValue>Splunk_Role3</fieldForValue>
-        <search base="getLookupFilesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard4">
           <query>| stats count by Splunk_Roles
 | rename Splunk_Roles AS Splunk_Role3</query>
         </search>
@@ -787,7 +788,7 @@
         <label>Splunk Instance</label>
         <fieldForLabel>Splunk_Instance3</fieldForLabel>
         <fieldForValue>Splunk_Instance3</fieldForValue>
-        <search base="getLookupFilesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard4">
           <query>| stats count by Splunk_Instance
 | rename Splunk_Instance AS Splunk_Instance3</query>
         </search>
@@ -799,7 +800,7 @@
         <label>App</label>
         <fieldForLabel>app3</fieldForLabel>
         <fieldForValue>app3</fieldForValue>
-        <search base="getLookupFilesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard4">
           <query>| stats count by app 
 | rename app as app3</query>
         </search>
@@ -824,7 +825,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>author3</fieldForLabel>
         <fieldForValue>author3</fieldForValue>
-        <search base="getLookupFilesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard4">
           <query>| stats count by author 
 | rename author as author3</query>
         </search>
@@ -836,7 +837,7 @@
         <initialValue>*</initialValue>
         <fieldForLabel>Type3</fieldForLabel>
         <fieldForValue>Type3</fieldForValue>
-        <search base="getLookupFilesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard4">
           <query>| stats count by Type | rename Type as Type3</query>
         </search>
         <default>*</default>
@@ -845,7 +846,7 @@
         <label>LOB</label>
         <fieldForLabel>LOB</fieldForLabel>
         <fieldForValue>LOB</fieldForValue>
-        <search base="getLookupFilesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard4">
           <query>| stats count by LOB</query>
         </search>
         <choice value="*">All</choice>
@@ -856,7 +857,7 @@
         <label>Employee Status</label>
         <fieldForLabel>Emp_Status</fieldForLabel>
         <fieldForValue>Emp_Status</fieldForValue>
-        <search base="getLookupFilesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard4">
           <query>| stats count by Emp_Status</query>
         </search>
         <choice value="*">All</choice>
@@ -867,7 +868,7 @@
         <label>Department</label>
         <fieldForLabel>Department</fieldForLabel>
         <fieldForValue>Department</fieldForValue>
-        <search base="getLookupFilesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard4">
           <query>| stats count by Department</query>
         </search>
         <choice value="*">All</choice>
@@ -884,7 +885,7 @@
     <panel>
       <title>Number of Lookup Files</title>
       <single>
-        <search base="getLookupFilesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard4">
           <query>| stats count</query>
         </search>
         <option name="colorMode">block</option>
@@ -898,7 +899,7 @@
     <panel>
       <title>Lookup Files By Author/User</title>
       <table>
-        <search base="getLookupFilesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard4">
           <query>| stats count AS "Number of Lookups"  by author | sort 0 - "Number of Lookups"</query>
         </search>
         <option name="count">5</option>
@@ -924,7 +925,7 @@
     <panel>
       <title>Lookup Files By App</title>
       <chart>
-        <search base="getLookupFilesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard4">
           <query>| stats count by app | sort 0 - count</query>
         </search>
         <option name="charting.chart">pie</option>
@@ -936,7 +937,7 @@
     <panel>
       <title>Number of KV Store Lookups</title>
       <single>
-        <search base="getLookupDefinitionsListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard3">
           <query>| stats count</query>
         </search>
         <option name="colorMode">block</option>
@@ -953,7 +954,7 @@
     <panel>
       <title>Lookup Files List</title>
       <table>
-        <search base="getLookupFilesListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard4">
           <query>| eval #=1 
 | table # Splunk_Instance app sharing author updated Lookup_File Lookup_File_Path disabled 
 | rename updated as Last_Updated , app as App sharing as "App Sharing" , description as Description , author AS Author , Splunk_Roles AS "Splunk Roles", Splunk_Instance AS "Splunk Instance", disabled AS "IS Disabled"</query>
@@ -1007,7 +1008,7 @@
     <panel>
       <title>KV Store Lookups List</title>
       <table>
-        <search base="getLookupDefinitionsListFromLookup">
+        <search base="splunk_sh_06_knowledge_objects_analysis_dashboard3">
           <query>| eval #=1 
 | table # Splunk_Instance app sharing author Lookup Collection updated disabled Fields_List 
 | rename updated as Last_Updated , app as App sharing as "App Sharing" , author AS Author , Splunk_Roles AS "Splunk Roles", Splunk_Instance AS "Splunk Instance", disabled AS "IS Disabled"</query>

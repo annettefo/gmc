@@ -1,5 +1,6 @@
 <form theme="dark">
   <label>Splunk - IDX - 04 - Disk IO Statistics - Dashboard - v1</label>
+  <description>Disk IO Statistics using the Splunk_TA_nix iostat Scripted Inputs</description>
   <search id="splunk_idx_04_disk_io_statistics_dashboard_v1">
     <query>index=osnixperf sourcetype=iostat splunk_server_group=dmc_group_indexer
             | fields _time host avgQueueSZ avgSvcMillis avgWaitMillis bandwUtilPct latency rKB_PS rReq_PS read_ops total_ops wKB_PS wReq_PS write_ops
@@ -43,18 +44,28 @@
   <row>
     <panel>
       <html>
-            <h3>Disk Statistics</h3>
-            <p/> Report input/output statistics for disks.
-            <p/> The iostat command is used for monitoring system input/output device loading by observing the time the devices are active in relation to their average transfer rates. The iostat command generates reports that can be used to change system configuration to better balance the input/output load between physical disks. 
-            <p/> Deploy The Splunk Add-on for Unix and Linux (Splunk_TA_nix) to the Indexer Tier:
-            <a href="https://splunkbase.splunk.com/app/833">https://splunkbase.splunk.com/app/833</a> 
-            <p/> Configure inputs.conf: Splunk_TA_nix/local 
-            <p/> [script://./bin/iostat.sh] 
-            <p/> disabled = false
-            <p/> index = osnixperf
-            <p/> interval = 60
-            <p/> More Information on iostat:
-            <a href="https://linux.die.net/man/1/iostat">https://linux.die.net/man/1/iostat</a>.
+                <h3>Disk Statistics</h3>
+                <p/> Report input/output statistics for disks.
+            
+                <p/> The iostat command is used for monitoring system input/output device loading by observing the time the devices are active in relation to their average transfer rates. The iostat command generates reports that can be used to change system configuration to better balance the input/output load between physical disks. 
+            
+                <p/> Deploy The Splunk Add-on for Unix and Linux (Splunk_TA_nix) to the Indexer Tier:
+            
+                <a href="https://splunkbase.splunk.com/app/833">https://splunkbase.splunk.com/app/833</a>
+                <p/> Configure inputs.conf: Splunk_TA_nix/local 
+            
+                <p/> [script://./bin/iostat.sh] 
+            
+                <p/> disabled = false
+            
+                <p/> index = osnixperf
+            
+                <p/> interval = 60
+            
+                <p/> More Information on iostat:
+            
+                <a href="https://linux.die.net/man/1/iostat">https://linux.die.net/man/1/iostat</a>.
+            
             </html>
     </panel>
   </row>

@@ -1,5 +1,6 @@
 <form theme="dark">
   <label>Splunk - IDX - 03 - Network Statistics - Dashboard - v1</label>
+  <description>Network Statistics using the Splunk_TA_nix netstat Scripted Inputs</description>
   <search id="splunk_idx_03_network_statistics_dashboard_v1">
     <query>index=osnixperf sourcetype=netstat host="$host$" | multikv | rename Proto as transport, State as state, Recv_Q as receive_queue, Send_Q as send_queue | rex field=LocalAddress "(?&lt;src_ip&gt;\d+.\d+.\d+.\d+):" | rex field=ForeignAddress "(?&lt;dest_ip&gt;\d+.\d+.\d+.\d+):" | rex field=LocalAddress ":(?&lt;src_port&gt;\d+?)$" | rex field=ForeignAddress ":(?&lt;dest_port&gt;\d+?)$" 
     | `get_instance_info_simple(host)` 
@@ -121,35 +122,50 @@
     <panel>
       <title>| table src_ip dest_ip src_port dest_port state send_queue</title>
       <html>
-            <h1>
-          <strong>Network Statistics</strong>
-        </h1>
-            <p/> netstat - Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
-            <p/> The “Proto” column tell us if the socket listed is TCP or UDP. Those are network protocols. TCP makes reliable connections but slows down dramatically if the network quality is bad. UDP stays fast but may lose a few packets or deliver them in the wrong order. TCP connections are used for browsing the web and downloading files. UDP connections are used by certain fast-paced computer games and sometimes by live streams.
-            <p/> The “Recv-Q” and “Send-Q” columns tell us how much data is in the queue for that socket, waiting to be read (Recv-Q) or sent (Send-Q). In short: if this is 0, everything’s ok, if there are non-zero values anywhere, there may be trouble.
-            <p/> The “Local Address” and “Foreign Address” columns tell to which hosts and ports the listed sockets are connected. The local end is always on the computer on which you’re running netstat, and the foreign end is about the other computer (could be somewhere in the local network or somewhere on the internet).
-            <p/> The “State” column tells in which state the listed sockets are. The TCP protocol defines states, including “LISTEN” (wait for some external computer to contact us) and “ESTABLISHED” (ready for communication). The stranger among these is the “CLOSE WAIT” state shown by two sockets. This means that the foreign or remote machine has already closed the connection, but that the local program somehow hasn’t followed suit. N/A: Indicates that this connection is not registered to the TCP bulk data ancillary input queue.
-            <p/> The “PID/Program name” column tells us which pid owns the listed socket and the name of the program running in the process with that pid. So you can see which programs are using the network and to whom they are connecting.
-            <p/> More Information on netstat:
-            <hr/>
-            <p/> Deploy The Splunk Add-on for Unix and Linux (Splunk_TA_nix) to the Indexer Tier:
-               <a href="https://splunkbase.splunk.com/app/833">https://splunkbase.splunk.com/app/833</a> 
-            <h1> Configure inputs.conf: Splunk_TA_nix/local</h1>
-            <p/> [script://./bin/netstat.sh] 
-            <p/> disabled = false
-            <p/> index = osnixperf
-            <p/> interval = 60
-            <hr/>
-            <h1>Components and their relationship with the network:</h1>
-            <p/> Splunk Enterprise components require network connectivity to work properly if they have been distributed across multiple machines, and even in cases where the components are on one machine.
-            <p/> Splunk components communicate with each other using TCP and UDP network protocols. A firewall that has not been configured to allow these ports open can block communication between the Splunk instances.
-            <p/> Splunk software uses the following network ports to communicate between its components by default or by convention. You can perform a network port scan on a host to determine if it is listening on a port. Record open port numbers on your deployment diagram. 
-            <p/> 
-            <a href="https://docs.splunk.com/Documentation/Splunk/latest/InheritedDeployment/Ports">Diagrams</a>
-            <p/>   
-               <img src="https://docs.splunk.com/images/9/9a/SplunkNetworkPorts.png" style="background-color:white;"/>
-               <img src="https://docs.splunk.com/images/2/24/SplunkNetworkPortsCluster.png" style="background-color:white;"/>
-         </html>
+                <h1>
+                    <strong>Network Statistics</strong>
+                </h1>
+                <p/> netstat - Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+            
+                <p/> The “Proto” column tell us if the socket listed is TCP or UDP. Those are network protocols. TCP makes reliable connections but slows down dramatically if the network quality is bad. UDP stays fast but may lose a few packets or deliver them in the wrong order. TCP connections are used for browsing the web and downloading files. UDP connections are used by certain fast-paced computer games and sometimes by live streams.
+            
+                <p/> The “Recv-Q” and “Send-Q” columns tell us how much data is in the queue for that socket, waiting to be read (Recv-Q) or sent (Send-Q). In short: if this is 0, everything’s ok, if there are non-zero values anywhere, there may be trouble.
+            
+                <p/> The “Local Address” and “Foreign Address” columns tell to which hosts and ports the listed sockets are connected. The local end is always on the computer on which you’re running netstat, and the foreign end is about the other computer (could be somewhere in the local network or somewhere on the internet).
+            
+                <p/> The “State” column tells in which state the listed sockets are. The TCP protocol defines states, including “LISTEN” (wait for some external computer to contact us) and “ESTABLISHED” (ready for communication). The stranger among these is the “CLOSE WAIT” state shown by two sockets. This means that the foreign or remote machine has already closed the connection, but that the local program somehow hasn’t followed suit. N/A: Indicates that this connection is not registered to the TCP bulk data ancillary input queue.
+            
+                <p/> The “PID/Program name” column tells us which pid owns the listed socket and the name of the program running in the process with that pid. So you can see which programs are using the network and to whom they are connecting.
+            
+                <p/> More Information on netstat:
+            
+                <hr/>
+                <p/> Deploy The Splunk Add-on for Unix and Linux (Splunk_TA_nix) to the Indexer Tier:
+               
+                <a href="https://splunkbase.splunk.com/app/833">https://splunkbase.splunk.com/app/833</a>
+                <h1> Configure inputs.conf: Splunk_TA_nix/local</h1>
+                <p/> [script://./bin/netstat.sh] 
+            
+                <p/> disabled = false
+            
+                <p/> index = osnixperf
+            
+                <p/> interval = 60
+            
+                <hr/>
+                <h1>Components and their relationship with the network:</h1>
+                <p/> Splunk Enterprise components require network connectivity to work properly if they have been distributed across multiple machines, and even in cases where the components are on one machine.
+            
+                <p/> Splunk components communicate with each other using TCP and UDP network protocols. A firewall that has not been configured to allow these ports open can block communication between the Splunk instances.
+            
+                <p/> Splunk software uses the following network ports to communicate between its components by default or by convention. You can perform a network port scan on a host to determine if it is listening on a port. Record open port numbers on your deployment diagram. 
+            
+                <p/>
+                <a href="https://docs.splunk.com/Documentation/Splunk/latest/InheritedDeployment/Ports">Diagrams</a>
+                <p/>
+                <img src="https://docs.splunk.com/images/9/9a/SplunkNetworkPorts.png" style="background-color:white;"/>
+                <img src="https://docs.splunk.com/images/2/24/SplunkNetworkPortsCluster.png" style="background-color:white;"/>
+            </html>
     </panel>
   </row>
   <row>
@@ -157,7 +173,7 @@
       <title>Splunk Ports Definition</title>
       <table>
         <search>
-          <query>| inputlookup splunk_ports_lookup 
+          <query>| inputlookup splunk_ports_all_csv_lookup 
 | table Port Component Purpose Communicates 
 | sort + Port</query>
           <earliest>$earliest$</earliest>

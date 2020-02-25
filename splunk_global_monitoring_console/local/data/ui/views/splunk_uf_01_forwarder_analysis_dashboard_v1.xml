@@ -1,7 +1,7 @@
 <form theme="dark">
-  <label>Splunk - UF - 01 - Forwarder Analysis - Dashboard - v1</label>
-  <search id="splunk_uf_01_forwarder_analysis_dashboard_v1">
-    <query>index=_internal sourcetype=splunkd search_group=dmc_group_indexer fwdType=* group=tcpin_connections guid=* connectionType IN("cooked", "cookedSSL") 
+    <label>Splunk - UF - 01 - Forwarder Analysis - Dashboard - v1</label>
+    <search id="splunk_uf_01_forwarder_analysis_dashboard_v1">
+        <query>index=_internal sourcetype=splunkd search_group=dmc_group_indexer fwdType=* group=tcpin_connections guid=* connectionType IN("cooked", "cookedSSL") 
 | eval Splunk_Instance=upper(hostname) 
 | fields _time host Splunk_Instance fwdType version os arch kb 
 | stats values(fwdType) as forwarder_type, latest(version) as version, values(arch) as arch, values(os) as os, max(_time) as last_connected, sum(kb) as new_sum_kb by Splunk_Instance 
@@ -10,238 +10,238 @@
 | fillnull value="Universal Forwarders" Splunk_Roles
 | search Splunk_Roles="*$Splunk_Roles$*" Splunk_Instance="*$Splunk_Instance$*" os="$os$" version="$version$" forwarder_type="$forwarder_type$"
 </query>
-    <earliest>$TimeRangePkr.earliest$</earliest>
-    <latest>$TimeRangePkr.latest$</latest>
-  </search>
-  <fieldset submitButton="true" autoRun="true">
-    <input type="time" token="TimeRangePkr" searchWhenChanged="true">
-      <label>Time Range</label>
-      <default>
-        <earliest>-15m</earliest>
-        <latest>now</latest>
-      </default>
-    </input>
-    <input type="dropdown" token="Splunk_Roles" searchWhenChanged="true">
-      <label>Splunk Roles</label>
-      <choice value="*">All</choice>
-      <default>*</default>
-      <initialValue>*</initialValue>
-      <fieldForLabel>Splunk_Roles</fieldForLabel>
-      <fieldForValue>Splunk_Roles</fieldForValue>
-      <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
-        <query>| stats count by Splunk_Roles</query>
-      </search>
-    </input>
-    <input type="dropdown" token="Splunk_Instance" searchWhenChanged="true">
-      <label>Splunk Instance</label>
-      <choice value="*">All</choice>
-      <default>*</default>
-      <initialValue>*</initialValue>
-      <fieldForLabel>Splunk_Instance</fieldForLabel>
-      <fieldForValue>Splunk_Instance</fieldForValue>
-      <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
-        <query>| stats count by Splunk_Instance</query>
-      </search>
-    </input>
-    <input type="dropdown" token="forwarder_type" searchWhenChanged="true">
-      <label>Forwarder Type</label>
-      <choice value="*">All</choice>
-      <default>*</default>
-      <initialValue>*</initialValue>
-      <fieldForLabel>forwarder_type</fieldForLabel>
-      <fieldForValue>forwarder_type</fieldForValue>
-      <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
-        <query>| stats count by forwarder_type</query>
-      </search>
-    </input>
-    <input type="dropdown" token="os" searchWhenChanged="true">
-      <label>OS</label>
-      <choice value="*">All</choice>
-      <default>*</default>
-      <initialValue>*</initialValue>
-      <fieldForLabel>os</fieldForLabel>
-      <fieldForValue>os</fieldForValue>
-      <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
-        <query>| stats count by os</query>
-      </search>
-    </input>
-    <input type="dropdown" token="version" searchWhenChanged="true">
-      <label>Version</label>
-      <choice value="*">All</choice>
-      <default>*</default>
-      <initialValue>*</initialValue>
-      <fieldForLabel>version</fieldForLabel>
-      <fieldForValue>version</fieldForValue>
-      <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
-        <query>| stats count by version</query>
-      </search>
-    </input>
-  </fieldset>
-  <row>
-    <panel>
-      <title>Total Number of Forwarders</title>
-      <single>
-        <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
-          <query>| stats count</query>
-        </search>
-        <option name="colorMode">block</option>
-        <option name="drilldown">none</option>
-        <option name="rangeColors">["0x53a051","0x53a051"]</option>
-        <option name="rangeValues">[0]</option>
-        <option name="refresh.display">progressbar</option>
-        <option name="useColors">1</option>
-      </single>
-    </panel>
-    <panel>
-      <title>By Role</title>
-      <chart>
-        <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
-          <query>| stats count by Splunk_Roles</query>
-        </search>
-        <option name="charting.chart">pie</option>
-        <option name="charting.drilldown">none</option>
-        <option name="refresh.display">progressbar</option>
-      </chart>
-    </panel>
-    <panel>
-      <title>By OS</title>
-      <chart>
-        <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
-          <query>stats count by os</query>
-        </search>
-        <option name="charting.chart">pie</option>
-        <option name="charting.chart.sliceCollapsingThreshold">0</option>
-        <option name="charting.drilldown">none</option>
-        <option name="refresh.display">progressbar</option>
-      </chart>
-    </panel>
-    <panel>
-      <title>By Version</title>
-      <chart>
-        <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
-          <query>stats count by version</query>
-        </search>
-        <option name="charting.chart">pie</option>
-        <option name="charting.chart.sliceCollapsingThreshold">0</option>
-        <option name="charting.drilldown">none</option>
-        <option name="refresh.display">progressbar</option>
-      </chart>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <title>Universal Forwarders Sending &gt; 1GB in the above Time Interval</title>
-      <table>
-        <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
-          <query>| where forwarder_type="uf" 
+        <earliest>$TimeRangePkr.earliest$</earliest>
+        <latest>$TimeRangePkr.latest$</latest>
+    </search>
+    <fieldset submitButton="true" autoRun="true">
+        <input type="time" token="TimeRangePkr" searchWhenChanged="true">
+            <label>Time Range</label>
+            <default>
+                <earliest>-15m</earliest>
+                <latest>now</latest>
+            </default>
+        </input>
+        <input type="dropdown" token="Splunk_Roles" searchWhenChanged="true">
+            <label>Splunk Roles</label>
+            <choice value="*">All</choice>
+            <default>*</default>
+            <initialValue>*</initialValue>
+            <fieldForLabel>Splunk_Roles</fieldForLabel>
+            <fieldForValue>Splunk_Roles</fieldForValue>
+            <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
+                <query>| stats count by Splunk_Roles</query>
+            </search>
+        </input>
+        <input type="dropdown" token="Splunk_Instance" searchWhenChanged="true">
+            <label>Splunk Instance</label>
+            <choice value="*">All</choice>
+            <default>*</default>
+            <initialValue>*</initialValue>
+            <fieldForLabel>Splunk_Instance</fieldForLabel>
+            <fieldForValue>Splunk_Instance</fieldForValue>
+            <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
+                <query>| stats count by Splunk_Instance</query>
+            </search>
+        </input>
+        <input type="dropdown" token="forwarder_type" searchWhenChanged="true">
+            <label>Forwarder Type</label>
+            <choice value="*">All</choice>
+            <default>*</default>
+            <initialValue>*</initialValue>
+            <fieldForLabel>forwarder_type</fieldForLabel>
+            <fieldForValue>forwarder_type</fieldForValue>
+            <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
+                <query>| stats count by forwarder_type</query>
+            </search>
+        </input>
+        <input type="dropdown" token="os" searchWhenChanged="true">
+            <label>OS</label>
+            <choice value="*">All</choice>
+            <default>*</default>
+            <initialValue>*</initialValue>
+            <fieldForLabel>os</fieldForLabel>
+            <fieldForValue>os</fieldForValue>
+            <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
+                <query>| stats count by os</query>
+            </search>
+        </input>
+        <input type="dropdown" token="version" searchWhenChanged="true">
+            <label>Version</label>
+            <choice value="*">All</choice>
+            <default>*</default>
+            <initialValue>*</initialValue>
+            <fieldForLabel>version</fieldForLabel>
+            <fieldForValue>version</fieldForValue>
+            <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
+                <query>| stats count by version</query>
+            </search>
+        </input>
+    </fieldset>
+    <row>
+        <panel>
+            <title>Total Number of Forwarders</title>
+            <single>
+                <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
+                    <query>| stats count</query>
+                </search>
+                <option name="colorMode">block</option>
+                <option name="drilldown">none</option>
+                <option name="rangeColors">["0x53a051","0x53a051"]</option>
+                <option name="rangeValues">[0]</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="useColors">1</option>
+            </single>
+        </panel>
+        <panel>
+            <title>By Role</title>
+            <chart>
+                <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
+                    <query>| stats count by Splunk_Roles</query>
+                </search>
+                <option name="charting.chart">pie</option>
+                <option name="charting.drilldown">none</option>
+                <option name="refresh.display">progressbar</option>
+            </chart>
+        </panel>
+        <panel>
+            <title>By OS</title>
+            <chart>
+                <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
+                    <query>stats count by os</query>
+                </search>
+                <option name="charting.chart">pie</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0</option>
+                <option name="charting.drilldown">none</option>
+                <option name="refresh.display">progressbar</option>
+            </chart>
+        </panel>
+        <panel>
+            <title>By Version</title>
+            <chart>
+                <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
+                    <query>stats count by version</query>
+                </search>
+                <option name="charting.chart">pie</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0</option>
+                <option name="charting.drilldown">none</option>
+                <option name="refresh.display">progressbar</option>
+            </chart>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <title>Universal Forwarders Sending &gt; 1GB in the above Time Interval</title>
+            <table>
+                <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
+                    <query>| where forwarder_type="uf" 
 | eval volume_Received_gb = round(volume_Received_mb / 1024, 2) 
 | where volume_Received_gb &gt; .5
 | table Splunk_Roles Splunk_Instance volume_Received_gb 
 | sort - volume_Received_gb 
 | rename Splunk_Roles AS "Splunk Roles" Splunk_Instance AS "Splunk Instance" volume_Received_gb AS "Volume Received (GB)"</query>
-        </search>
-        <option name="drilldown">none</option>
-        <option name="refresh.display">progressbar</option>
-        <option name="rowNumbers">true</option>
-        <option name="wrap">false</option>
-        <format type="color" field="Splunk Roles">
-          <colorPalette type="sharedList"></colorPalette>
-          <scale type="sharedCategory"></scale>
-        </format>
-        <format type="color" field="Splunk Instance">
-          <colorPalette type="sharedList"></colorPalette>
-          <scale type="sharedCategory"></scale>
-        </format>
-        <format type="number" field="Volume Received (GB)">
-          <option name="precision">3</option>
-          <option name="unit">GB</option>
-        </format>
-        <format type="color" field="Volume Received (GB)">
-          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
-          <scale type="minMidMax" midType="percent" midValue="50"></scale>
-        </format>
-      </table>
-    </panel>
-    <panel>
-      <title>Heavy Forwarders Sending &gt; 1GB in the above Time Interval</title>
-      <table>
-        <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
-          <query>| where forwarder_type="full" 
+                </search>
+                <option name="drilldown">none</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">true</option>
+                <option name="wrap">false</option>
+                <format type="color" field="Splunk Roles">
+                    <colorPalette type="sharedList"></colorPalette>
+                    <scale type="sharedCategory"></scale>
+                </format>
+                <format type="color" field="Splunk Instance">
+                    <colorPalette type="sharedList"></colorPalette>
+                    <scale type="sharedCategory"></scale>
+                </format>
+                <format type="number" field="Volume Received (GB)">
+                    <option name="precision">3</option>
+                    <option name="unit">GB</option>
+                </format>
+                <format type="color" field="Volume Received (GB)">
+                    <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+                    <scale type="minMidMax" midType="percent" midValue="50"></scale>
+                </format>
+            </table>
+        </panel>
+        <panel>
+            <title>Heavy Forwarders Sending &gt; 1GB in the above Time Interval</title>
+            <table>
+                <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
+                    <query>| where forwarder_type="full" 
 | eval volume_Received_gb = round(volume_Received_mb / 1024, 2) 
 | where volume_Received_gb &gt; 1 
 | table Splunk_Roles Splunk_Instance volume_Received_gb 
 | sort - volume_Received_gb 
 | rename Splunk_Roles AS "Splunk Roles" Splunk_Instance AS "Splunk Instance" volume_Received_gb AS "Volume Received (GB)"</query>
-        </search>
-        <option name="drilldown">none</option>
-        <option name="refresh.display">progressbar</option>
-        <option name="rowNumbers">true</option>
-        <option name="wrap">false</option>
-        <format type="color" field="Splunk Roles">
-          <colorPalette type="sharedList"></colorPalette>
-          <scale type="sharedCategory"></scale>
-        </format>
-        <format type="color" field="Splunk Instance">
-          <colorPalette type="sharedList"></colorPalette>
-          <scale type="sharedCategory"></scale>
-        </format>
-        <format type="number" field="Volume Received (GB)">
-          <option name="precision">3</option>
-          <option name="unit">GB</option>
-        </format>
-        <format type="color" field="Volume Received (GB)">
-          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
-          <scale type="minMidMax" midType="percent" midValue="50"></scale>
-        </format>
-      </table>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <title>All Forwarders Versions</title>
-      <table>
-        <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
-          <query>| table Splunk_Roles Splunk_Instance os arch version volume_Received_mb last_connected
+                </search>
+                <option name="drilldown">none</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">true</option>
+                <option name="wrap">false</option>
+                <format type="color" field="Splunk Roles">
+                    <colorPalette type="sharedList"></colorPalette>
+                    <scale type="sharedCategory"></scale>
+                </format>
+                <format type="color" field="Splunk Instance">
+                    <colorPalette type="sharedList"></colorPalette>
+                    <scale type="sharedCategory"></scale>
+                </format>
+                <format type="number" field="Volume Received (GB)">
+                    <option name="precision">3</option>
+                    <option name="unit">GB</option>
+                </format>
+                <format type="color" field="Volume Received (GB)">
+                    <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+                    <scale type="minMidMax" midType="percent" midValue="50"></scale>
+                </format>
+            </table>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <title>All Forwarders Versions</title>
+            <table>
+                <search base="splunk_uf_01_forwarder_analysis_dashboard_v1">
+                    <query>| table Splunk_Roles Splunk_Instance os arch version volume_Received_mb last_connected
 | rename Splunk_Roles AS "Splunk Roles" Splunk_Instance AS "Splunk Instance"
 volume_Received_mb AS "Volume Received (MB)" version AS Version os AS OS arch AS "OS Architecture" last_connected AS "Date Last Connected"</query>
-        </search>
-        <option name="drilldown">none</option>
-        <option name="refresh.display">progressbar</option>
-        <option name="rowNumbers">true</option>
-        <option name="wrap">false</option>
-        <format type="color" field="Splunk Roles">
-          <colorPalette type="sharedList"></colorPalette>
-          <scale type="sharedCategory"></scale>
-        </format>
-        <format type="color" field="Splunk Instance">
-          <colorPalette type="sharedList"></colorPalette>
-          <scale type="sharedCategory"></scale>
-        </format>
-        <format type="number" field="Volume Received (MB)">
-          <option name="precision">3</option>
-          <option name="unit">MB</option>
-        </format>
-        <format type="color" field="Volume Received (MB)">
-          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
-          <scale type="minMidMax" midType="percent" midValue="50"></scale>
-        </format>
-        <format type="color" field="Version">
-          <colorPalette type="sharedList"></colorPalette>
-          <scale type="sharedCategory"></scale>
-        </format>
-        <format type="color" field="OS Architecture">
-          <colorPalette type="sharedList"></colorPalette>
-          <scale type="sharedCategory"></scale>
-        </format>
-        <format type="color" field="OS">
-          <colorPalette type="sharedList"></colorPalette>
-          <scale type="sharedCategory"></scale>
-        </format>
-        <format type="color" field="Date Last Connected">
-          <colorPalette type="sharedList"></colorPalette>
-          <scale type="sharedCategory"></scale>
-        </format>
-      </table>
-    </panel>
-  </row>
+                </search>
+                <option name="drilldown">none</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">true</option>
+                <option name="wrap">false</option>
+                <format type="color" field="Splunk Roles">
+                    <colorPalette type="sharedList"></colorPalette>
+                    <scale type="sharedCategory"></scale>
+                </format>
+                <format type="color" field="Splunk Instance">
+                    <colorPalette type="sharedList"></colorPalette>
+                    <scale type="sharedCategory"></scale>
+                </format>
+                <format type="number" field="Volume Received (MB)">
+                    <option name="precision">3</option>
+                    <option name="unit">MB</option>
+                </format>
+                <format type="color" field="Volume Received (MB)">
+                    <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+                    <scale type="minMidMax" midType="percent" midValue="50"></scale>
+                </format>
+                <format type="color" field="Version">
+                    <colorPalette type="sharedList"></colorPalette>
+                    <scale type="sharedCategory"></scale>
+                </format>
+                <format type="color" field="OS Architecture">
+                    <colorPalette type="sharedList"></colorPalette>
+                    <scale type="sharedCategory"></scale>
+                </format>
+                <format type="color" field="OS">
+                    <colorPalette type="sharedList"></colorPalette>
+                    <scale type="sharedCategory"></scale>
+                </format>
+                <format type="color" field="Date Last Connected">
+                    <colorPalette type="sharedList"></colorPalette>
+                    <scale type="sharedCategory"></scale>
+                </format>
+            </table>
+        </panel>
+    </row>
 </form>

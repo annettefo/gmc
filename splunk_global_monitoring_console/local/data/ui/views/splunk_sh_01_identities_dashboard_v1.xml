@@ -1,8 +1,9 @@
 <form theme="dark">
   <label>Splunk - SH - 01 - Identities - Dashboard - v1</label>
+  <description>Identities Dashboard</description>
   <search id="splunk_sh_01_identities_dashboard_v1">
     <query>
-| inputlookup splunk_sh_identities_lookup 
+| inputlookup splunk_identities_sh_csv_lookup 
 | fields identity prefix nick first last full_name suffix email phone phone2 managedBy priority bunit category watchlist startDate endDate work_city work_region work_country work_lat work_long Title LOB Department Emp_Type Emp_Status Cost_Center Location_Code Floor_Number Splunk_Roles Splunk_Instance Contractor_Expiration capabilities defaultApp defaultAppSourceRole last_successful_login locked-out roles type tz 
 | fillnull value="Undefined" Splunk_Roles Splunk_Instance identity prefix nick first last full_name suffix email phone phone2 managedBy priority bunit category watchlist startDate endDate work_city work_region work_country work_lat work_long Title LOB Department Emp_Type Emp_Status Cost_Center Location_Code Floor_Number Contractor_Expiration capabilities defaultApp defaultAppSourceRole last_successful_login locked-out roles type tz 
 | makemv delim="|" Splunk_Roles | makemv delim="|" Splunk_Instance | makemv delim="|" capabilities | makemv delim="|" roles
@@ -157,10 +158,10 @@
   <row id="style_settings" depends="$visible$">
     <panel depends="$alwaysHideCSS$">
       <html>
-         <style>
-           <!--.dashboard-body {-->
-           <!--    background: #a6a6a6 !important;-->
-           <!--}-->
+                <style>
+                    <!--.dashboard-body {-->
+                    <!--    background: #a6a6a6 !important;-->
+                    <!--}-->
            .dashboard-panel h2{
              background:#FFA500 !important;
              color:black !important;
@@ -174,8 +175,9 @@
                 .table, th, td {
               border: 8px solid black !important; }
             { display: none;  }
-         </style>
-       </html>
+         
+                </style>
+            </html>
     </panel>
   </row>
   <row>

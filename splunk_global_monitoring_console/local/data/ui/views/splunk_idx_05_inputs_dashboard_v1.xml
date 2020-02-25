@@ -1,8 +1,9 @@
 <form theme="dark">
   <label>Splunk - IDX - 05 - Inputs - Dashboard - v1</label>
+  <description>All Splunk Servers Data Inputs with tons of filters</description>
   <search id="splunk_sh_09_macros_dashboard_v1">
     <query>
-| inputlookup splunk_sh_rest_data_inputs_all_csv_lookup 
+| inputlookup splunk_rest_data_inputs_all_csv_lookup 
 | fields Splunk_Instance Splunk_Roles app title disabled sharing author type description source sourcetype index location acceleration whitelist blacklist crcSalt interval
 | makemv delim="|" Splunk_Roles
 | fillnull value="Undefined" Splunk_Instance Splunk_Roles app title disabled sharing author type description source sourcetype index location acceleration whitelist blacklist crcSalt interval

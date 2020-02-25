@@ -1,5 +1,6 @@
 <form theme="dark">
   <label>Splunk - SH - 04 - Audit Search Activity - Dashboard - v1</label>
+  <description>Audit all Splunk Search Activities using one normalized Data Model for Audit, Introspection &amp; Internal</description>
   <search id="splunk_sh_04_audit_search_activity_dashboard_introspection_search_usage">
     <query>
 | tstats SUMMARIESONLY=TRUE ALLOW_OLD_SUMMARIES=FALSE 
@@ -276,10 +277,10 @@
   <row id="style_settings" depends="$visible$">
     <panel depends="$alwaysHideCSS$">
       <html>
-         <style>
-           <!--.dashboard-body {-->
-           <!--    background: #a6a6a6 !important;-->
-           <!--}-->
+                <style>
+                    <!--.dashboard-body {-->
+                    <!--    background: #a6a6a6 !important;-->
+                    <!--}-->
            .dashboard-panel h2{
              background:#FFA500 !important;
              color:black !important;
@@ -293,8 +294,9 @@
                 .table, th, td {
               border: 8px solid black !important; }
             { display: none;  }
-         </style>
-       </html>
+         
+                </style>
+            </html>
     </panel>
   </row>
   <row>
@@ -304,7 +306,7 @@
         <label>Exclude GMC Searches</label>
         <choice value="Search_Activity.Introspection_Search_Usage.app3!=&quot;splunk_global_monitoring_console&quot;">Yes</choice>
         <choice value="">No</choice>
-        <delimiter> </delimiter>
+        <delimiter/>
         <default>"Search_Activity.Introspection_Search_Usage.app3!=""splunk_global_monitoring_console"""</default>
         <initialValue>Search_Activity.Introspection_Search_Usage.app3!="splunk_global_monitoring_console"</initialValue>
       </input>
@@ -321,7 +323,7 @@
         <fieldForLabel>search_id_normalized</fieldForLabel>
         <fieldForValue>search_id_normalized</fieldForValue>
         <search base="splunk_sh_04_audit_search_activity_dashboard_introspection_search_usage">
-          <query>| stats count by search_id_normalized </query>
+          <query>| stats count by search_id_normalized</query>
         </search>
         <default>*</default>
         <initialValue>*</initialValue>
@@ -939,8 +941,8 @@
     <panel>
       <title>Before you can drildown to look at running jobs, select the host from the dropdown above and then click the link below.   https://$host$:8000/en-US/app/search/job_manager?owner=&amp;app=&amp;jobStatus=running</title>
       <html>
-        <a href="https://$host$:8000/en-US/app/search/job_manager?owner=&amp;app=&amp;jobStatus=running" target="_blank">Splunk Job Manager</a>
-      </html>
+                <a href="https://$host$:8000/en-US/app/search/job_manager?owner=&amp;app=&amp;jobStatus=running" target="_blank">Splunk Job Manager</a>
+            </html>
     </panel>
   </row>
   <row>
@@ -1000,7 +1002,7 @@
         <label>Exclude GMC Searches</label>
         <choice value="NOT Search_Activity.Audit_Search.savedsearch_name1 IN (&quot;*splunk_global_monitoring_console*&quot;, &quot;splunk_*_dashboard_v*&quot;, &quot;splunk_*_*_lookup_*&quot;)">Yes</choice>
         <choice value="">No</choice>
-        <delimiter> </delimiter>
+        <delimiter/>
         <default>"NOT Search_Activity.Audit_Search.savedsearch_name1 IN (""*splunk_global_monitoring_console*"", ""splunk_*_dashboard_v*"", ""splunk_*_*_lookup_*"")"</default>
         <initialValue>NOT Search_Activity.Audit_Search.savedsearch_name1 IN ("*splunk_global_monitoring_console*", "splunk_*_dashboard_v*", "splunk_*_*_lookup_*")</initialValue>
       </input>
@@ -1101,7 +1103,7 @@
         <fieldForLabel>Index_Name</fieldForLabel>
         <fieldForValue>Index_Name</fieldForValue>
         <search base="splunk_sh_04_audit_search_activity_dashboard_audit_search">
-          <query>| stats count by Index_Name</query>
+          <query>| stats count by "Index_Name"</query>
         </search>
         <default>*</default>
         <initialValue>*</initialValue>
@@ -1507,7 +1509,7 @@
         <label>Exclude GMC Searches</label>
         <choice value="Search_Activity.Internal_Scheduler.app2!=&quot;splunk_global_monitoring_console&quot;">Yes</choice>
         <choice value="Search_Activity.Internal_Scheduler.app2=&quot;*&quot;">No</choice>
-        <delimiter> </delimiter>
+        <delimiter/>
         <default>"Search_Activity.Internal_Scheduler.app2!=""splunk_global_monitoring_console"""</default>
         <initialValue>Search_Activity.Internal_Scheduler.app2!="splunk_global_monitoring_console"</initialValue>
       </input>
