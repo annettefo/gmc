@@ -20,7 +20,3 @@ Semicircle Donut Chart Visualization: https://splunkbase.splunk.com/app/4378
 
 
 Number Display Visualization: https://splunkbase.splunk.com/app/4537
-
-
-Geolocation Lookup for Splunk: https://splunkbase.splunk.com/app/4102
-
