@@ -1,1 +1,338 @@
-index=_internal sourcetype=splunkd search_group=dmc_group_indexer fwdType=* group=tcpin_connections guid=* connectionType IN (cooked, cookedSSL)
+<form theme="dark">
+  <label>Splunk - UF - 02 - Forwarding Analysis - Dashboard - v2</label>
+  <search id="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+    <query>index=_internal sourcetype=splunkd search_group=dmc_group_indexer fwdType=* group=tcpin_connections guid=* connectionType IN (cooked, cookedSSL) 
+| fields _time host sourceHost sourceIp os version fwdType connectionType kb arch ack destPort ingest_pipe ssl chan_new_kBps process_time_ms lastIndexer process_time_ms tcp_avg_thruput tcp_Kprocessed
+| `get_instance_info(host)` 
+| lookup splunk_rest_server_info_all_csv_lookup host_ip AS sourceIp OUTPUTNEW Splunk_Roles AS Forwarder_Splunk_Role 
+| makemv delim="|" Forwarder_Splunk_Role
+| fillnull value="Undefined" sourceHost sourceIp os version fwdType connectionType kb arch ack destPort ingest_pipe ssl Splunk_Roles Forwarder_Splunk_Role
+| stats sum(kb) AS sum_kb values(Forwarder_Splunk_Role) AS "Forwarder Splunk Role" max(_time) as last_connected last(*) as * by sourceHost
+| eval last_connected=strftime(last_connected, "%m/%d/%Y %H:%M:%S") 
+    </query>
+    <earliest>$TimeRangePkr.earliest$</earliest>
+    <latest>$TimeRangePkr.latest$</latest>
+  </search>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="time" token="TimeRangePkr" searchWhenChanged="true">
+      <label>Time Range</label>
+      <default>
+        <earliest>-1m</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="dropdown" token="Splunk_Roles" searchWhenChanged="true">
+      <label>Splunk Roles</label>
+      <fieldForLabel>Splunk_Roles</fieldForLabel>
+      <fieldForValue>Splunk_Roles</fieldForValue>
+      <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+        <query>| stats count by Splunk_Roles</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="fwdType" searchWhenChanged="true">
+      <label>Forwarder Type</label>
+      <fieldForLabel>fwdType</fieldForLabel>
+      <fieldForValue>fwdType</fieldForValue>
+      <choice value="*">All</choice>
+      <choice value="uf">Universal Forwarders</choice>
+      <choice value="full">Heavy Forwarders</choice>
+      <choice value="lwf">Light Weight Forwarders</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="Forwarder_Splunk_Role" searchWhenChanged="true">
+      <label>Splunk Instance Forwarder Role</label>
+      <fieldForLabel>Forwarder_Splunk_Role</fieldForLabel>
+      <fieldForValue>Forwarder_Splunk_Role</fieldForValue>
+      <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+        <query>| stats count by Forwarder_Splunk_Role</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="os" searchWhenChanged="true">
+      <label>Forwarder  Operating System</label>
+      <fieldForLabel>os</fieldForLabel>
+      <fieldForValue>os</fieldForValue>
+      <choice value="*">All</choice>
+      <choice value="AIX">AIX</choice>
+      <choice value="Linux">Linux</choice>
+      <choice value="Windows">Windows</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="connectionType" searchWhenChanged="true">
+      <label>Forwarder Connection Type</label>
+      <fieldForLabel>connectionType</fieldForLabel>
+      <fieldForValue>connectionType</fieldForValue>
+      <choice value="*">All</choice>
+      <choice value="cooked">Cooked</choice>
+      <choice value="cookedSSL">Cooked SSL</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="version" searchWhenChanged="true">
+      <label>Forwarder  Version</label>
+      <fieldForLabel>version</fieldForLabel>
+      <fieldForValue>version</fieldForValue>
+      <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+        <query>| stats count by version</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="ingest_pipe" searchWhenChanged="true">
+      <label>Ingest Pipeline</label>
+      <fieldForLabel>ingest_pipe</fieldForLabel>
+      <fieldForValue>ingest_pipe</fieldForValue>
+      <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+        <query>| stats count by ingest_pipe</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="arch" searchWhenChanged="true">
+      <label>Forwarder Architecture</label>
+      <fieldForLabel>arch</fieldForLabel>
+      <fieldForValue>arch</fieldForValue>
+      <choice value="*">All</choice>
+      <choice value="x64">64-Bit</choice>
+      <choice value="x32">32-Bit</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="ingest_pipe" searchWhenChanged="true">
+      <label>Ingest Pipeline</label>
+      <fieldForLabel>ingest_pipe</fieldForLabel>
+      <fieldForValue>ingest_pipe</fieldForValue>
+      <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+        <query>| stats count by ingest_pipe</query>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="ssl" searchWhenChanged="true">
+      <label>Forwarding with SSL?</label>
+      <fieldForLabel>ssl</fieldForLabel>
+      <fieldForValue>ssl</fieldForValue>
+      <choice value="*">All</choice>
+      <choice value="true">True</choice>
+      <choice value="false">False</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="ack" searchWhenChanged="true">
+      <label>Forwarder  ack</label>
+      <fieldForLabel>ack</fieldForLabel>
+      <fieldForValue>ack</fieldForValue>
+      <choice value="*">All</choice>
+      <choice value="true">True</choice>
+      <choice value="false">False</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Total Number of Forwarders</title>
+      <single>
+        <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+          <query>| stats count</query>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x53a051"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <title>By OS</title>
+      <chart>
+        <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+          <query>stats count by os</query>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>By Version</title>
+      <chart>
+        <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+          <query>stats count by version</query>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>By Type</title>
+      <chart>
+        <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+          <query>| stats count by fwdType</query>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+          <query>| table host Splunk_Roles sourceHost sourceIp last_connected Forwarder_Splunk_Role os version fwdType connectionType sum_kb arch ack destPort ingest_pipe ssl chan_new_kBps process_time_ms lastIndexer process_time_ms tcp_avg_thruput tcp_Kprocessed</query>
+        </search>
+        <option name="count">12</option>
+        <option name="drilldown">none</option>
+        <option name="rowNumbers">true</option>
+        <option name="wrap">false</option>
+        <format type="number" field="Volume (KB)"></format>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+          <query>| chart eval(round(sum(sum_kb)/1024/1024,2)) AS Volume_GB by Splunk_Role</query>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.showDataLabels">all</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Universal Forwarders Sending &gt; 1GB in the above Time Interval</title>
+      <table>
+        <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+          <query>| where forwarder_type="uf" 
+| eval volume_Received_gb = round(volume_Received_mb / 1024, 2) 
+| where volume_Received_gb &gt; .5
+| table Splunk_Roles Splunk_Instance volume_Received_gb 
+| sort - volume_Received_gb 
+| rename Splunk_Roles AS "Splunk Roles" Splunk_Instance AS "Splunk Instance" volume_Received_gb AS "Volume Received (GB)"</query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">true</option>
+        <option name="wrap">false</option>
+        <format type="color" field="Splunk Roles">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Splunk Instance">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="number" field="Volume Received (GB)">
+          <option name="precision">3</option>
+          <option name="unit">GB</option>
+        </format>
+        <format type="color" field="Volume Received (GB)">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+      </table>
+    </panel>
+    <panel>
+      <title>Heavy Forwarders Sending &gt; 1GB in the above Time Interval</title>
+      <table>
+        <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+          <query>| where forwarder_type="full" 
+| eval volume_Received_gb = round(volume_Received_mb / 1024, 2) 
+| where volume_Received_gb &gt; 1 
+| table Splunk_Roles Splunk_Instance volume_Received_gb 
+| sort - volume_Received_gb 
+| rename Splunk_Roles AS "Splunk Roles" Splunk_Instance AS "Splunk Instance" volume_Received_gb AS "Volume Received (GB)"</query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">true</option>
+        <option name="wrap">false</option>
+        <format type="color" field="Splunk Roles">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Splunk Instance">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="number" field="Volume Received (GB)">
+          <option name="precision">3</option>
+          <option name="unit">GB</option>
+        </format>
+        <format type="color" field="Volume Received (GB)">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>All Forwarders Versions</title>
+      <table>
+        <search base="Splunk_IDX_06_Global_License_Usage_Dashboard_v2">
+          <query>| table Splunk_Roles Splunk_Instance os arch version volume_Received_mb last_connected
+| rename Splunk_Roles AS "Splunk Roles" Splunk_Instance AS "Splunk Instance"
+volume_Received_mb AS "Volume Received (MB)" version AS Version os AS OS arch AS "OS Architecture" last_connected AS "Date Last Connected"</query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">true</option>
+        <option name="wrap">false</option>
+        <format type="color" field="Splunk Roles">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Splunk Instance">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="number" field="Volume Received (MB)">
+          <option name="precision">3</option>
+          <option name="unit">MB</option>
+        </format>
+        <format type="color" field="Volume Received (MB)">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" midColor="#F8BE34" minColor="#53A051"></colorPalette>
+          <scale type="minMidMax" midType="percent" midValue="50"></scale>
+        </format>
+        <format type="color" field="Version">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="OS Architecture">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="OS">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <format type="color" field="Date Last Connected">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+      </table>
+    </panel>
+  </row>
+</form>
